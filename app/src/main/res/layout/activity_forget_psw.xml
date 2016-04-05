@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#666666"
+            android:text="忘记密码"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_margin="14dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="16dp">
+
+
+        <EditText
+            android:inputType="number"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:id="@+id/et_forget_phonenum"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:lines="1"
+            android:background="@drawable/edittext_shape"
+            android:drawableLeft="@mipmap/phone"
+            android:drawablePadding="10dp"
+            android:hint="输入手机号"
+            android:padding="10dp"
+            android:textColorHint="#C3C8CC" />
+
+        <TextView
+            android:id="@+id/iv_forget_add"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:text="+86"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:background="@drawable/shape_imageview_part_radius"
+            android:padding="10dp"
+            android:src="@mipmap/next" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="18dp">
+
+        <EditText
+            android:inputType="number"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:id="@+id/et_forget_captcha"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:lines="1"
+            android:background="@drawable/edittext_shape"
+            android:drawableLeft="@mipmap/captcha"
+            android:drawablePadding="8dp"
+            android:hint="验证码"
+            android:padding="8dp"
+            android:textColorHint="#C3C8CC" />
+
+        <TextView
+            android:id="@+id/tv_forget_send"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:text="发送验证码"
+            android:textColor="#2099F9"
+            android:src="@mipmap/next" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="18dp">
+
+        <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:id="@+id/et_forget_psw"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/edittext_shape"
+            android:drawableLeft="@mipmap/password"
+            android:drawablePadding="10dp"
+            android:hint="输入新的密码"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:textColorHint="#C3C8CC" />
+
+        <ImageView
+            android:padding="10dp"
+            android:id="@+id/iv_forget_visiable"
+            android:layout_marginRight="4dp"
+            android:layout_toLeftOf="@+id/iv_forget_update"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_forget_update"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shape_imageview_part_radius"
+            android:padding="10dp"
+            android:src="@mipmap/next" />
+    </RelativeLayout>
+</LinearLayout>

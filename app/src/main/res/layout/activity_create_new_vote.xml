@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/divider_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/iv_create_votew_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:src="@mipmap/back2x" />
+
+        <TextView
+            android:id="@+id/tv_create_vote_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="新建投票"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:paddingTop="10dp"
+        android:text="发起一个投票,比如聚餐去哪,最美班干部..." />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:paddingLeft="17dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="输入投票名称:" />
+
+        <EditText
+            android:textSize="14sp"
+            android:id="@+id/ed_create_vote_name"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/ed_create_vote_des"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="18dp"
+        android:textSize="13sp"
+        android:gravity="left"
+        android:hint="为投票活动添加描述(必填)"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/tv_create_vote_declare"
+        android:padding="18dp"
+        android:text="这是在发起一次新的投票,创建成功之前你需要添加参与本次投票的成员,添加成员成功后,成员就可以在我参与的投票中找到该投票。"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/tv_create_vote_create"
+        android:textColor="#FFFFFF"
+        android:background="@color/main_back_pressed"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:text="创建"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

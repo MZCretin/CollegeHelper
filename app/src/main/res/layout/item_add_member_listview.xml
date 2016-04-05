@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="84dp">
+
+    <ImageView
+        android:id="@+id/item_iv_selectmember_icon"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_margin="12dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_found_robot_chat_icon" />
+
+    <TextView
+        android:layout_toRightOf="@+id/item_iv_selectmember_icon"
+        android:id="@+id/item_tv_selectmember_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/item_iv_selectmember_icon"
+        android:text="潘达"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_toRightOf="@+id/item_iv_selectmember_icon"
+        android:id="@+id/item_iv_selectmember_des"
+        android:layout_alignBottom="@+id/item_iv_selectmember_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大家好，我就是潘达。"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:padding="20dp"
+        android:id="@+id/item_iv_selectmember_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/okcopy2x" />
+
+</RelativeLayout>

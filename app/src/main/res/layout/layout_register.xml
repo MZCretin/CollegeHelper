@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/transparent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="110dp"
+            android:background="@mipmap/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:inputType="number"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:id="@+id/et_register_phonenum"
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:lines="1"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape"
+            android:drawableLeft="@mipmap/phone"
+            android:drawablePadding="10dp"
+            android:hint="输入手机号"
+            android:padding="10dp"
+            android:textColorHint="#C3C8CC" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="18dp">
+
+            <EditText
+                android:inputType="number"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:id="@+id/et_register_captcha"
+                android:textSize="14dp"
+                android:lines="1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_shape"
+                android:drawableLeft="@mipmap/captcha"
+                android:drawablePadding="8dp"
+                android:hint="验证码"
+                android:padding="8dp"
+                android:textColorHint="#C3C8CC" />
+
+            <TextView
+                android:id="@+id/tv_register_send"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:text="发送验证码"
+                android:textColor="#2099F9"
+                android:src="@mipmap/next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="18dp">
+
+            <EditText
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:id="@+id/et_register_psw"
+                android:textSize="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_shape"
+                android:drawableLeft="@mipmap/password"
+                android:drawablePadding="10dp"
+                android:hint="密码"
+                android:padding="10dp"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:textColorHint="#C3C8CC" />
+
+            <ImageView
+                android:id="@+id/iv_register_register"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_imageview_part_radius"
+                android:padding="10dp"
+                android:src="@mipmap/next" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册意味着同意"
+                android:textColor="#C3C8CC"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_register_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仙念助手使用条款"
+                android:textColor="#2099F9"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

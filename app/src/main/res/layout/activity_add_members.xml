@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context="com.cretin.collegehelper.ui.AddMembersActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/iv_add_member_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:src="@mipmap/back2x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="添加成员"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_add_member_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="添加"
+            android:textColor="@color/divider_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="输入成员手机"
+            android:textSize="14sp" />
+
+        <EditText
+            android:inputType="phone"
+            android:id="@+id/ed_add_member_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="5dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_shape"
+        android:gravity="start"
+        android:paddingBottom="10dp"
+        android:paddingLeft="17dp"
+        android:paddingRight="17dp"
+        android:paddingTop="10dp"
+        android:text="在刚开始的时候,你还没有添加过任何成员到您的个人系统中,所以您需要手动输入用户的手机号,如果该用户也注册过,您就可以添加他为成员,当您早已经添加过用户时,您就可以直接在下面列表中选择您需要拉入该投票系统的成员."
+        android:textSize="13sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="17dp"
+        android:paddingTop="10dp"
+        android:text="请选择成员:" />
+
+
+    <ListView
+        android:id="@+id/listview_add_member_members"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_add_member_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_back_pressed"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="完成"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</LinearLayout>

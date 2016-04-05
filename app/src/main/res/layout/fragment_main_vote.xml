@@ -1,0 +1,176 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context="com.cretin.collegehelper.fragment.MainVoteFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_back_pressed">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="12dp"
+            android:text="投票"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rela_create_vote_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_vote_icon_new"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@mipmap/ic_chat_blacklist_empty_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_vote_icon_new"
+            android:paddingTop="10dp"
+            android:text="新建投票"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_vote_icon_new"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_vote_icon_new"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:text="如果你是活动组织者,你可以在此发起新的投票" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/divider_color" />
+    <RelativeLayout
+        android:id="@+id/rela_vote_manager_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_vote_icon_manager"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@mipmap/ic_dlg_has_course_remind" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_vote_icon_manager"
+            android:paddingTop="10dp"
+            android:text="投票管理"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_vote_icon_manager"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_vote_icon_manager"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:text="如果你发起过投票,你可以在此管理它们" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/divider_color" />
+    <RelativeLayout
+        android:id="@+id/rela_vote_tongji_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_vote_icon_tongji"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@mipmap/ic_found_treehole_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_vote_icon_tongji"
+            android:paddingTop="10dp"
+            android:text="投票统计"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_vote_icon_tongji"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_vote_icon_tongji"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:text="如果你发起过投票,你可以在此统计它们" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/divider_color" />
+    <RelativeLayout
+        android:id="@+id/rela_vote_my_joinin_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_vote_icon_my_joinin"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:src="@mipmap/ic_import_course_other_tip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_vote_icon_my_joinin"
+            android:paddingTop="10dp"
+            android:text="我参与的投票"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_vote_icon_my_joinin"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/iv_vote_icon_my_joinin"
+            android:paddingBottom="10dp"
+            android:singleLine="true"
+            android:text="如果你只是参与者,你可以在此查看与你相关的投票" />
+    </RelativeLayout>
+
+</LinearLayout>

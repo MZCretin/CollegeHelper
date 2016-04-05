@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:background="@mipmap/select" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_login_phonenum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edittext_shape"
+            android:drawableLeft="@mipmap/phone"
+            android:drawablePadding="10dp"
+            android:hint="手机号"
+            android:inputType="number"
+            android:lines="1"
+            android:padding="10dp"
+            android:textColorHint="#C3C8CC"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="14dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="18dp">
+
+            <EditText
+                android:id="@+id/et_login_psw"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_shape"
+                android:drawableLeft="@mipmap/password"
+                android:drawablePadding="10dp"
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:padding="10dp"
+                android:textColorHint="#C3C8CC"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/iv_login_login"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_imageview_part_radius"
+                android:padding="10dp"
+                android:src="@mipmap/next" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
