@@ -35,7 +35,6 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
     compile 'com.android.support:appcompat-v7:23.2.1'
@@ -49,4 +48,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.7'
     compile 'com.squareup.okio:okio:1.4.0'
     compile 'com.github.orangegangsters:swipy:1.2.2@aar'
+    compile files('libs/jxl.jar')
 }

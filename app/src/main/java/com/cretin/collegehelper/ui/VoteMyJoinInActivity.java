@@ -1,7 +1,9 @@
 package com.cretin.collegehelper.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,6 +44,15 @@ public class VoteMyJoinInActivity extends AppCompatActivity implements SwipyRefr
         list = new ArrayList<>();
         adapter = new VoteMyJoininListViewAdapter(this,list,R.layout.item_listview_vote_my_joinin);
         listviewVoteMyJoinin.setAdapter(adapter);
+
+        listviewVoteMyJoinin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(VoteMyJoinInActivity.this,UserVoteActivity_.class);
+                intent.putExtra("info",list.get(position));
+                startActivity(intent);
+            }
+        });
 
         swipyListviewVoteMyJoinin.setOnRefreshListener(this);
 

@@ -58,15 +58,21 @@ public class VoteMangerActivity extends AppCompatActivity implements SwipyRefres
                 startActivity(intent);
             }
         });
+
+        ivAddMemberBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VoteMangerActivity.this.finish();
+            }
+        });
     }
 
     private void initData() {
-        BmobQuery<UserModel> innerQuery = new BmobQuery<UserModel>();
+        BmobQuery<UserModel> innerQuery = new BmobQuery<>();
         UserModel users = BmobUser.getCurrentUser(this, UserModel.class);
-        String[] friendIds={users.getObjectId()};//好友的objectId数组
+        String[] friendIds={users.getObjectId()};
         innerQuery.addWhereContainedIn("objectId", Arrays.asList(friendIds));
-//查询帖子
-        BmobQuery<VoteModel> query = new BmobQuery<VoteModel>();
+        BmobQuery<VoteModel> query = new BmobQuery<>();
         query.addWhereMatchesQuery("author", "_User", innerQuery);
         query.findObjects(this, new FindListener<VoteModel>() {
             @Override

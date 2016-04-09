@@ -20,17 +20,45 @@
             android:src="@mipmap/back2x" />
 
         <TextView
+            android:maxWidth="250dp"
             android:id="@+id/tv_create_vote_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:layout_centerInParent="true"
             android:text="投票标题"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_create_vote_outport"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"
+            android:textColor="@color/main_back_pressed"
+            android:text="导出"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/tv_create_vote_titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/divider_color"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/teal"
+        android:textSize="14sp" />
+    <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/tv_create_vote_des"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +67,6 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="10dp"
-        android:text="我们来对班委进行投票吧,评选出你认为的最负责的和最不负责的班委来哦！"
         android:textColor="@color/teal"
         android:textSize="14sp" />
 
@@ -57,6 +84,7 @@
 
     <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
         android:id="@+id/swipy_listview_vote_details"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

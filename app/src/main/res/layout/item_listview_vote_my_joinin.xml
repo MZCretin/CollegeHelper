@@ -22,16 +22,19 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/tv_vote_my_joinin_time"
                 android:paddingTop="10dp"
                 android:id="@+id/tv_vote_my_joinin_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="投票标题"
+                android:singleLine="true"
                 android:textColor="@color/titlecolor"
                 android:textSize="14sp" />
 
-
             <TextView
+                android:paddingLeft="5dp"
                 android:paddingRight="10dp"
                 android:layout_centerVertical="true"
                 android:paddingTop="10dp"
@@ -60,6 +63,7 @@
             android:layout_height="wrap_content"
             android:text="投票内容"
             android:paddingBottom="10dp"
+            android:paddingRight="10dp"
             android:textColor="@color/textcolor"
             android:textSize="12sp" />
     </LinearLayout>

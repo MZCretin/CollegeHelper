@@ -1,10 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
     tools:context="com.cretin.collegehelper.ui.UserVoteActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/iv_voting_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:src="@mipmap/back2x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="投票进行中"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_voting_commit"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="提交"
+            android:textColor="@color/main_back_pressed"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:textColor="@color/titlecolor"
+        android:textSize="16sp"
+        android:id="@+id/tv_voting_title"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:background="@color/divider_color"
+        android:text="投票标题"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/titlecolor"
+        android:textSize="15sp"
+        android:id="@+id/tv_voting_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:background="@color/divider_color"
+        android:text="投票内容"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/titlecolor"
+        android:textSize="15sp"
+        android:id="@+id/tv_voting_author"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:background="@color/divider_color"
+        android:text="创建人:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/ed_voting_user_content"
+        android:layout_marginTop="5dp"
+        android:gravity="left|top"
+        android:paddingTop="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="10dp"
+        android:textSize="14sp"
+        android:background="@color/divider_color"
+        android:textColor="@color/textcolor"
+        android:hint="在此写上你的意见..."
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

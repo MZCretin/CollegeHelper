@@ -19,11 +19,11 @@ public class VoteDetailsListViewAdapter extends CommonAdapter<VoteResultModel>{
 
     @Override
     public void convert(ViewHolders holder, VoteResultModel item, int position) {
-        ((TextView)holder.getView(R.id.tv_vote_details_id)).setText("用户ID:"+item.getAuthor().getUsername());
+        ((TextView)holder.getView(R.id.tv_vote_details_id)).setText("用户ID:"+item.getVoteUser().getUsername());
         SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm");
         ((TextView)holder.getView(R.id.tv_vote_details_time)).setText(format.format(item.getVoteTime()));
-        ((TextView)holder.getView(R.id.tv_vote_details_title)).setText(item.getVoteTitle());
-        ((TextView)holder.getView(R.id.tv_vote_details_des)).setText(item.getVoteDes());
-        ((TextView)holder.getView(R.id.tv_vote_details_content)).setText(item.getVoteContent());
+        ((TextView)holder.getView(R.id.tv_vote_details_title)).setText(item.getVoteInfo().getVoteTitle());
+        ((TextView)holder.getView(R.id.tv_vote_details_des)).setText(item.getVoteInfo().getVoteDestribe());
+        ((TextView)holder.getView(R.id.tv_vote_details_content)).setText(item.getUserVoteContent());
     }
 }
