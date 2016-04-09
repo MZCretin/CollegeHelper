@@ -1,20 +1,29 @@
 package com.cretin.collegehelper.model;
 
-import java.util.List;
+import java.io.Serializable;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobRelation;
 
 /**
  * Created by cretin on 4/4/16.
  */
-public class VoteModel extends BmobObject {
+public class VoteModel extends BmobObject implements Serializable{
     private long createTime;
     private String userName;
     private String voteTitle;
     private String voteDestribe;
-    private List<UserModel> joinList;
+    private BmobRelation joinList;
     private int joinCount;
-    private boolean verifierFlag;
+    private int verifireFlag;
+
+    public BmobRelation getJoinList() {
+        return joinList;
+    }
+
+    public void setJoinList(BmobRelation joinList) {
+        this.joinList = joinList;
+    }
 
     public long getCreateTime() {
         return createTime;
@@ -48,14 +57,6 @@ public class VoteModel extends BmobObject {
         this.voteDestribe = voteDestribe;
     }
 
-    public List<UserModel> getJoinList() {
-        return joinList;
-    }
-
-    public void setJoinList(List<UserModel> joinList) {
-        this.joinList = joinList;
-    }
-
     public int getJoinCount() {
         return joinCount;
     }
@@ -64,11 +65,11 @@ public class VoteModel extends BmobObject {
         this.joinCount = joinCount;
     }
 
-    public boolean isVerifierFlag() {
-        return verifierFlag;
+    public int getVerifireFlag() {
+        return verifireFlag;
     }
 
-    public void setVerifierFlag(boolean verifierFlag) {
-        this.verifierFlag = verifierFlag;
+    public void setVerifireFlag(int verifireFlag) {
+        this.verifireFlag = verifireFlag;
     }
 }

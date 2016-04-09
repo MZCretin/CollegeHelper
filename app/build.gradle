@@ -48,4 +48,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.alibaba:fastjson:1.2.7'
     compile 'com.squareup.okio:okio:1.4.0'
+    compile 'com.github.orangegangsters:swipy:1.2.2@aar'
 }

@@ -40,7 +40,9 @@
         <activity android:name=".ui.ForgetPswActivity_" />
         <activity android:name=".ui.CreateNewVoteActivity_" />
         <activity android:name=".ui.AddMembersActivity_" />
-        <activity android:name=".ui.VoteMangerActivity"></activity>
+        <activity android:name=".ui.VoteMangerActivity_" />
+        <activity android:name=".ui.VoteDetailsActivity_" />
+        <activity android:name=".ui.VoteMyJoinInActivity"></activity>
     </application>
 
 </manifest>

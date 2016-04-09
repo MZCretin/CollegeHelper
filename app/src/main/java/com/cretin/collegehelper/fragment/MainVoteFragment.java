@@ -8,6 +8,8 @@ import android.widget.RelativeLayout;
 
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.ui.CreateNewVoteActivity_;
+import com.cretin.collegehelper.ui.VoteMangerActivity_;
+import com.cretin.collegehelper.ui.VoteMyJoinInActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -43,10 +45,12 @@ public class MainVoteFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), CreateNewVoteActivity_.class));
                 break;
             case R.id.rela_vote_manager_container:
+                startActivity(new Intent(getActivity(), VoteMangerActivity_.class));
                 break;
             case R.id.rela_vote_tongji_container:
                 break;
             case R.id.rela_vote_my_joinin_container:
+                startActivity(new Intent(getActivity(),VoteMyJoinInActivity.class));
                 break;
         }
     }

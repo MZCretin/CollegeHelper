@@ -298,4 +298,12 @@
     <!--程序主色调-->
     <color name="transparent">#00000000</color>
     <!--透明-->
+    <color name="tabbar">#d0e5fa</color>
+    <color name="brandcolor">#2099f9</color>
+    <color name="bgcolor">#f1f4f9</color>
+    <color name="titlecolor">#415156</color>
+    <color name="namecolor">#4b566c</color>
+    <color name="flnamecolor">#606e8c</color>
+    <color name="bodycolor">#6a6f75</color>
+    <color name="textcolor">#c3c8cc</color>
 </resources>

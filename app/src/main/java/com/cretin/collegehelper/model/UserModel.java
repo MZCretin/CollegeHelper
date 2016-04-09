@@ -1,5 +1,6 @@
 package com.cretin.collegehelper.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -7,13 +8,22 @@ import cn.bmob.v3.BmobUser;
 /**
  * Created by cretin on 4/3/16.
  */
-public class UserModel extends BmobUser {
+public class UserModel extends BmobUser implements Serializable{
     private String id;
     private String nickName;
     private String phoneNum;
     private String psw;
     private String signature;
     private List<UserModel> members;
+    private List<VoteModel> joinedVotes;
+
+    public List<VoteModel> getJoinedVotes() {
+        return joinedVotes;
+    }
+
+    public void setJoinedVotes(List<VoteModel> joinedVotes) {
+        this.joinedVotes = joinedVotes;
+    }
 
     public String getSignature() {
         return signature;
