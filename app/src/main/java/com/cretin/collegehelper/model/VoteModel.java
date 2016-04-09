@@ -16,6 +16,15 @@ public class VoteModel extends BmobObject implements Serializable{
     private BmobRelation joinList;
     private int joinCount;
     private int verifireFlag;
+    private UserModel author;
+
+    public UserModel getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserModel author) {
+        this.author = author;
+    }
 
     public BmobRelation getJoinList() {
         return joinList;

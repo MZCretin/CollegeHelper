@@ -8,7 +8,6 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -93,51 +92,28 @@ public class CreateNewVoteActivity extends AppCompatActivity implements ShuoMCli
             return;
         }
 
-//        final VoteModel voteModel = new VoteModel();
-//        voteModel.setJoinList(joinList);
-//        voteModel.setCreateTime(System.currentTimeMillis());
-//        voteModel.setUserName(BaseApp.getInstance().getUserModel().getUsername());
-//        voteModel.setJoinCount(joinList.size());
-//        voteModel.setVoteTitle(voteTitle);
-//        voteModel.setVoteDestribe(des);
-//        voteModel.save(this, new SaveListener() {
-//            @Override
-//
-//            }
-//
-//            @Override
-//            public void onFailure(int i, String s) {
-//                Toast.makeText(CreateNewVoteActivity.this, s, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         VoteModel voteModel = new VoteModel();
         voteModel.setCreateTime(System.currentTimeMillis());
-        voteModel.setUserName(BaseApp.getInstance().getUserModel().getUsername());
         voteModel.setJoinCount(joinList.size());
         voteModel.setVoteTitle(voteTitle);
         voteModel.setVoteDestribe(des);
-//将当前用户添加到Post表中的likes字段值中，表明当前用户喜欢该帖子
         BmobRelation relation = new BmobRelation();
-//将当前用户添加到多对多关联中
         for (UserModel user : joinList) {
             relation.add(user);
         }
-//多对多关联指向`post`的`likes`字段
         voteModel.setJoinList(relation);
+        UserModel users = BaseApp.getInstance().getUserModel();
+        voteModel.setAuthor(users);
         voteModel.save(this, new SaveListener() {
 
             @Override
             public void onSuccess() {
-                // TODO Auto-generated method stub
-                Log.i("life", "多对多关联添加成功");
                 Toast.makeText(CreateNewVoteActivity.this, "创建成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int arg0, String arg1) {
-                // TODO Auto-generated method stub
-                Log.i("life", "多对多关联添加失败");
+                Toast.makeText(CreateNewVoteActivity.this, arg1, Toast.LENGTH_SHORT).show();
             }
         });
 

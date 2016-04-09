@@ -1,49 +1,91 @@
 package com.cretin.collegehelper.ui;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cretin.collegehelper.R;
+import com.cretin.collegehelper.adapter.VoteMyJoininListViewAdapter;
 import com.cretin.collegehelper.model.UserModel;
 import com.cretin.collegehelper.model.VoteModel;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
 
-public class VoteMyJoinInActivity extends AppCompatActivity {
+@EActivity(R.layout.activity_vote_my_join_in)
+public class VoteMyJoinInActivity extends AppCompatActivity implements SwipyRefreshLayout.OnRefreshListener{
+    @ViewById
+    ImageView ivVoteMyJoininBack;
+    @ViewById
+    ListView listviewVoteMyJoinin;
+    @ViewById
+    SwipyRefreshLayout swipyListviewVoteMyJoinin;
+    private List<VoteModel> list;
+    private VoteMyJoininListViewAdapter adapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vote_my_join_in);
+    @AfterViews
+    public void init(){
+        getSupportActionBar().hide();
+        list = new ArrayList<>();
+        adapter = new VoteMyJoininListViewAdapter(this,list,R.layout.item_listview_vote_my_joinin);
+        listviewVoteMyJoinin.setAdapter(adapter);
 
-        init();
-    }
+        swipyListviewVoteMyJoinin.setOnRefreshListener(this);
 
-    private void init() {
-        // 查询喜欢这个帖子的所有用户，因此查询的是用户表
-        BmobQuery<VoteModel> query = new BmobQuery<VoteModel>();
-        UserModel post = BmobUser.getCurrentUser(this, UserModel.class);
-        //likes是Post表中的字段，用来存储所有喜欢该帖子的用户
-        query.addWhereRelatedTo("joinList", new BmobPointer(post));
-        query.findObjects(this, new FindListener<VoteModel>() {
+        initData();
 
+        ivVoteMyJoininBack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(List<VoteModel> object) {
-                // TODO Auto-generated method stub
-                Log.i("life", "查询个数："+object.size());
-            }
-
-            @Override
-            public void onError(int code, String msg) {
-                // TODO Auto-generated method stub
-                Log.i("life", "查询失败："+code+"-"+msg);
+            public void onClick(View v) {
+                VoteMyJoinInActivity.this.finish();
             }
         });
+    }
+
+    private void initData() {
+        BmobQuery<UserModel> innerQuery = new BmobQuery<>();
+        UserModel users = BmobUser.getCurrentUser(this, UserModel.class);
+        String[] friendIds={users.getObjectId()};//好友的objectId数组
+        innerQuery.addWhereContainedIn("objectId", Arrays.asList(friendIds));
+//查询帖子
+        BmobQuery<VoteModel> query = new BmobQuery<>();
+        query.addWhereMatchesQuery("joinList", "_User", innerQuery);
+        query.include("author");
+        query.findObjects(this, new FindListener<VoteModel>() {
+            @Override
+            public void onSuccess(List<VoteModel> object) {
+                list.clear();
+                for (VoteModel v:object) {
+                    if(v.getVerifireFlag()==1){
+                        list.add(v);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                swipyListviewVoteMyJoinin.setRefreshing(false);
+            }
+            @Override
+            public void onError(int code, String msg) {
+                Toast.makeText(VoteMyJoinInActivity.this, msg, Toast.LENGTH_SHORT).show();
+                swipyListviewVoteMyJoinin.setRefreshing(false);
+            }
+        });
+    }
+
+    @Override
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
+        initData();
     }
 }

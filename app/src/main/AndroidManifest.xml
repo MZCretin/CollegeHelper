@@ -42,7 +42,8 @@
         <activity android:name=".ui.AddMembersActivity_" />
         <activity android:name=".ui.VoteMangerActivity_" />
         <activity android:name=".ui.VoteDetailsActivity_" />
-        <activity android:name=".ui.VoteMyJoinInActivity"></activity>
+        <activity android:name=".ui.VoteMyJoinInActivity_" />
+        <activity android:name=".ui.UserVoteActivity"></activity>
     </application>
 
 </manifest>

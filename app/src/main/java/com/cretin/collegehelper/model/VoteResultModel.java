@@ -7,11 +7,28 @@ import cn.bmob.v3.BmobObject;
  */
 public class VoteResultModel extends BmobObject{
     private String createUserName;
-    private String userName;
+    private UserModel author;
     private long voteTime;
     private String voteTitle;
     private String voteDes;
     private String voteContent;
+    private UserModel voteUser;
+
+    public UserModel getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserModel author) {
+        this.author = author;
+    }
+
+    public UserModel getVoteUser() {
+        return voteUser;
+    }
+
+    public void setVoteUser(UserModel voteUser) {
+        this.voteUser = voteUser;
+    }
 
     public String getCreateUserName() {
         return createUserName;
@@ -19,14 +36,6 @@ public class VoteResultModel extends BmobObject{
 
     public void setCreateUserName(String createUserName) {
         this.createUserName = createUserName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public long getVoteTime() {
