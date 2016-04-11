@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#383942">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_camera_photo_container"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#383942"
+        android:layout_height="41dp">
+        <TextView
+            android:layout_weight="1"
+            android:text="照片"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:id="@+id/btn_camera_ptohos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:background="#40FFFFFF"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_weight="1"
+            android:text="相机"
+            android:gravity="center"
+            android:id="@+id/btn_camera_camera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</LinearLayout>

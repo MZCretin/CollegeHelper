@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.cretin.collegehelper.views.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/iv_item_gridview_common_sendflow"
+        android:layout_width="116dp"
+        android:layout_height="116dp" />
+
+    <ImageView
+        android:id="@+id/iv_item_gridview_common_delete"
+        android:layout_alignRight="@+id/iv_item_gridview_common_sendflow"
+        android:padding="5dp"
+        android:src="@mipmap/publish_delete3x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</com.cretin.collegehelper.views.SquareLayout>

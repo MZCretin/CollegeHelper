@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#383942"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#383942">
+
+        <ImageView
+            android:id="@+id/iv_cameras_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="10dp"
+            android:src="@mipmap/closecameraorphoto2x" />
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="17dp"
+            android:layout_toLeftOf="@+id/tv_cameras_continue"
+            android:background="@drawable/textview_photo_camera_shape_remain"
+            android:gravity="center"
+            android:text="7"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_cameras_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="17dp"
+            android:text="继续"
+            android:textColor="@color/main_back_pressed"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.cretin.collegehelper.utils.CameraSurfaceView
+            android:id="@+id/camera_surfaceview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#383942">
+
+        <ImageView
+            android:id="@+id/iv_camera_flashlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:padding="10dp"
+            android:src="@mipmap/flashlight2x" />
+
+        <com.cretin.collegehelper.views.TakePhotoView
+            android:id="@+id/iv_camera_takepic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/camerabtn_blue_outside2x" />
+
+        <ImageView
+            android:id="@+id/iv_camera_changecamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:padding="10dp"
+            android:src="@mipmap/changecamera2x" />
+    </RelativeLayout>
+
+</LinearLayout>

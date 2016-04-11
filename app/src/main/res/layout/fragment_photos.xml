@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:background="#383942"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <ImageView
+            android:id="@+id/iv_photos_close"
+            android:layout_marginLeft="17dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/closecameraorphoto2x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_photos_selected"
+            android:layout_centerInParent="true"
+            android:background="@drawable/textview_photo_camera_shape"
+            android:layout_width="wrap_content"
+            android:text="相册已选 1"
+            android:textSize="15sp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_photos_selected_all"
+            android:layout_toLeftOf="@+id/tv_photos_continue"
+            android:layout_marginRight="17dp"
+            android:text="7"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:background="@drawable/textview_photo_camera_shape_remain"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/tv_photos_continue"
+            android:text="继续"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="17dp"
+            android:textColor="@color/main_back_pressed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:columnWidth="@dimen/image_size"
+        android:horizontalSpacing="@dimen/space_size"
+        android:numColumns="3"
+        android:paddingBottom="?android:attr/actionBarSize"
+        android:verticalSpacing="@dimen/space_size" />
+
+</LinearLayout>

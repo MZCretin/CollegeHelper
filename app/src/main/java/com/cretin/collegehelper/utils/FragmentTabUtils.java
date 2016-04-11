@@ -48,6 +48,16 @@ public class FragmentTabUtils implements RadioGroup.OnCheckedChangeListener {
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
         for (int i = 0; i < rgs.getChildCount(); i++) {
             if (rgs.getChildAt(i).getId() == checkedId) {
+                // 如果设置了切换tab额外功能功能接口
+                if (null != onRgsExtraCheckedChangedListener) {
+                    onRgsExtraCheckedChangedListener.OnRgsExtraCheckedChanged(radioGroup, checkedId, i);
+                }
+                if (i == 2) {
+                    return;
+                }
+                if (i > 2) {
+                    i--;
+                }
                 Fragment fragment = fragments.get(i);
                 FragmentTransaction ft = obtainFragmentTransaction(i);
 //                getCurrentFragment().onPause(); // 暂停当前tab
@@ -60,13 +70,9 @@ public class FragmentTabUtils implements RadioGroup.OnCheckedChangeListener {
                     ft.commit();
                 }
                 showTab(i); // 显示目标tab
-                // 如果设置了切换tab额外功能功能接口
-                if (null != onRgsExtraCheckedChangedListener) {
-                    onRgsExtraCheckedChangedListener.OnRgsExtraCheckedChanged(radioGroup, checkedId, i);
-                }
+                return;
             }
         }
-
     }
 
     /**

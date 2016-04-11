@@ -1,9 +1,11 @@
 package com.cretin.collegehelper.ui;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,7 +15,6 @@ import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.fragment.MainCourseFragment;
 import com.cretin.collegehelper.fragment.MainHomeFragment;
 import com.cretin.collegehelper.fragment.MainMineFragment;
-import com.cretin.collegehelper.fragment.MainSocialFragment;
 import com.cretin.collegehelper.fragment.MainVoteFragment_;
 import com.cretin.collegehelper.utils.FragmentTabUtils;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements FragmentTabUtils.
     RadioButton rbMainMine;
     private List<Fragment> list = new ArrayList<>();
 
-    private int[] resNormal = new int[]{R.mipmap.ic_tabbar_social_normal, R.mipmap.ic_tabbar_playground_normal, R.mipmap.ic_tabbar_papers_normal, R.mipmap.ic_tabbar_found_normal, R.mipmap.ic_tabbar_settings_normal};
+    private int[] resNormal = new int[]{R.mipmap.ic_tabbar_social_normal, R.mipmap.ic_tabbar_playground_normal, R.mipmap.group22x, R.mipmap.ic_tabbar_found_normal, R.mipmap.ic_tabbar_settings_normal};
     private int[] resPressed = new int[]{R.mipmap.ic_tabbar_social_pressed, R.mipmap.ic_tabbar_playground_pressed, R.mipmap.ic_tabbar_papers_pressed, R.mipmap.ic_tabbar_found_pressed, R.mipmap.ic_tabbar_settings_pressed};
 
     /**
@@ -55,10 +56,17 @@ public class MainActivity extends AppCompatActivity implements FragmentTabUtils.
         getSupportActionBar().hide();
         list.add(new MainHomeFragment());
         list.add(new MainCourseFragment());
-        list.add(new MainSocialFragment());
+//        list.add(new MainSocialFragment());
         list.add(new MainVoteFragment_());
         list.add(new MainMineFragment());
         new FragmentTabUtils(getSupportFragmentManager(), list, R.id.main_fragment_container, rgMainRg, this);
+
+        rbMainSocial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SendActivity_.class));
+            }
+        });
     }
 
 
@@ -75,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements FragmentTabUtils.
 
     @Override
     public void OnRgsExtraCheckedChanged(RadioGroup radioGroup, int checkedId, int index) {
-        goBack(index);
+        if(index!=2) {
+            goBack(index);
+        }
     }
 
     /**

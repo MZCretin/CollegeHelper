@@ -11,6 +11,7 @@
         android:layout_above="@+id/rg_main_rg" />
 
     <RadioGroup
+        android:gravity="center"
         android:id="@+id/rg_main_rg"
         android:layout_marginBottom="2dp"
         android:layout_width="match_parent"
@@ -47,15 +48,12 @@
         <RadioButton
             android:id="@+id/rb_main_social"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/ic_tabbar_papers_normal"
+            android:drawableTop="@mipmap/group22x"
             android:gravity="center"
-            android:textSize="10sp"
-            android:drawablePadding="2dp"
-            android:text="社区"
-            android:textColor="@color/main_bottom_radiogroup" />
+            />
 
         <RadioButton
             android:id="@+id/rb_main_vote"

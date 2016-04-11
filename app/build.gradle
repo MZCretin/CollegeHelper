@@ -44,9 +44,7 @@ dependencies {
     compile 'com.github.orhanobut:hawk:1.21'
     compile 'com.google.code.gson:gson:2.5'
     compile 'cn.bmob.android:bmob-sdk:3.4.5'
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.alibaba:fastjson:1.2.7'
-    compile 'com.squareup.okio:okio:1.4.0'
     compile 'com.github.orangegangsters:swipy:1.2.2@aar'
     compile files('libs/jxl.jar')
 }

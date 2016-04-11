@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <RelativeLayout
+        android:id="@+id/rela_common_send_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_comment_send_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:paddingTop="10dp"
+            android:src="@mipmap/publishv2_back2x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布"
+            android:textColor="@color/titlecolor"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/ed_common_send_comtent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rela_common_send_actionbar"
+        android:background="@null"
+        android:hint="你现在在干啥咧..."
+        android:padding="18dp"
+        android:textColorHint="#676d86"
+        android:textSize="14sp" />
+
+    <com.cretin.collegehelper.views.NoScroolGridView
+        android:id="@+id/gv_common_send_pics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ed_common_send_comtent"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:columnWidth="112dp"
+        android:gravity="center"
+        android:horizontalSpacing="4dp"
+        android:layout_above="@+id/ll_common_send_bottom_container"
+        android:numColumns="3"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="vertical"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="4dp" />
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ll_common_send_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_common_send_send"
+            android:layout_width="65dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_common_send_shape"
+            android:text="发布"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

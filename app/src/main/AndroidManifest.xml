@@ -9,6 +9,15 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 读取网络状态权限 end -->
 
+    <!-- 调用系统摄像头的权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- Bmob权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,9 +29,8 @@
 
     <!-- SD卡读写权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!-- SD卡读写权限 end -->
-
-
     <!-- Bmob权限end -->
     <application
         android:name=".BaseApp"
@@ -48,7 +56,11 @@
         <activity android:name=".ui.VoteMangerActivity_" />
         <activity android:name=".ui.VoteDetailsActivity_" />
         <activity android:name=".ui.VoteMyJoinInActivity_" />
-        <activity android:name=".ui.UserVoteActivity_"></activity>
+        <activity android:name=".ui.UserVoteActivity_" />
+        <activity
+            android:name=".ui.SendActivity_"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.CameraPhotoActivity_" />
     </application>
 
 </manifest>
