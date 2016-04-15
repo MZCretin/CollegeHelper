@@ -7,11 +7,29 @@ import cn.bmob.v3.BmobObject;
 /**
  * Created by cretin on 4/11/16.
  */
-public class FlowModel extends BmobObject{
+public class FlowModel extends BmobObject {
     private UserModel author;
     private long sendTime;
     private List<String> resourceUrl;
     private String topicTontent;
+    private List<CommentModel> comments;
+    private String spotlight;
+
+    public String getSpotlight() {
+        return spotlight;
+    }
+
+    public void setSpotlight(String spotlight) {
+        this.spotlight = spotlight;
+    }
+
+    public List<CommentModel> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentModel> comments) {
+        this.comments = comments;
+    }
 
     public UserModel getAuthor() {
         return author;

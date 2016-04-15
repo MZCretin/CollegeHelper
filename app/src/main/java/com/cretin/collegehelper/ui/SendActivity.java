@@ -3,8 +3,6 @@ package com.cretin.collegehelper.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,26 +17,16 @@ import android.widget.Toast;
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.adapter.GridViewAdapter;
 import com.cretin.collegehelper.globaldata.GlobalData;
-import com.cretin.collegehelper.model.FlowModel;
 import com.cretin.collegehelper.model.Images;
-import com.cretin.collegehelper.model.UserModel;
-import com.cretin.collegehelper.utils.ImageUtils;
+import com.cretin.collegehelper.services.SendTopicIntentService;
 import com.cretin.collegehelper.views.NoScroolGridView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UploadBatchListener;
 
 
 @EActivity(R.layout.activity_send)
@@ -164,74 +152,16 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
             toSendListImage.remove(toSendListImage.size() - 1);
         }
 
-        new UploadAsync().execute(toSendListImage);
+        GlobalData.getInstance().setToSendImagesList(toSendListImage);
+        GlobalData.getInstance().setContent(edCommonSendComtent.getText().toString());
+
         Toast.makeText(SendActivity.this, "发送中...", Toast.LENGTH_SHORT).show();
+        SendTopicIntentService.startActionSendTopic(SendActivity.this);
         justGoBack();
 
         // 返回
     }
 
-    private class UploadAsync extends AsyncTask<List<Images>, Void, Void> {
-
-        @Override
-        protected Void doInBackground(List<Images>... params) {
-            String[] filePath = new String[params[0].size()];
-            final List<String> urlList = new ArrayList<>();
-            //保存每个图片然后上传
-            for (int i = 0; i < params[0].size(); i++) {
-                Images img = params[0].get(i);
-                //保存本地
-                String fileName = String.valueOf(System.currentTimeMillis() + Math.round(Math.random() * 10000)) + ".jpg";
-                String localPath = ImageUtils.getFileRootPath() + fileName;
-
-                Bitmap toSaveBitmap = img.getmBitmap();
-                ImageUtils.saveBitmapToFile(toSaveBitmap, fileName);
-//                if (toSaveBitmap != null) {
-//                    toSaveBitmap.recycle();
-//                    toSaveBitmap = null;
-//                }
-                filePath[i] = localPath;
-            }
-            if (filePath.length > 0) {
-                Bmob.uploadBatch(SendActivity.this, filePath, new UploadBatchListener() {
-
-                    @Override
-                    public void onSuccess(List<BmobFile> files, List<String> urls) {
-                        urlList.clear();
-                        urlList.addAll(urls);
-                    }
-
-                    @Override
-                    public void onError(int statuscode, String errormsg) {
-                    }
-
-                    @Override
-                    public void onProgress(int curIndex, int curPercent, int total, int totalPercent) {
-                        if(totalPercent == 100){
-                            FlowModel flowModel = new FlowModel();
-                            flowModel.setAuthor(BmobUser.getCurrentUser(SendActivity.this, UserModel.class));
-                            flowModel.setResourceUrl(urlList);
-                            flowModel.setSendTime(System.currentTimeMillis());
-                            flowModel.setTopicTontent(edCommonSendComtent.getText().toString());
-                            flowModel.save(SendActivity.this, new SaveListener() {
-                                @Override
-                                public void onSuccess() {
-                                    Toast.makeText(SendActivity.this, "发送成功", Toast.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onFailure(int i, String s) {
-                                    Toast.makeText(SendActivity.this, s, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    }
-                });
-            }
-            return null;
-        }
-
-    }
 
     // 当前界面已有图片数量
     public int getCurrentCount() {
@@ -245,7 +175,6 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 
     //检查是否需要保存
     private void checkBeforeGoBack() {
-        //TODO 检查
         if (!TextUtils.isEmpty(currId) ||
                 !TextUtils.isEmpty(edCommonSendComtent.getText().toString()) ||
                 mListImage.size() > 1
@@ -275,25 +204,6 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
         this.finish();
     }
 
-    //region EventBus
-    private List<Object> mEventSubscriberList;
-
-    private void registerEventBus() {
-        mEventSubscriberList = new ArrayList<>();
-//        mEventSubscriberList.add(new EventSubscriber());
-        mEventSubscriberList.add(this);
-
-        for (Object obj : mEventSubscriberList) {
-            EventBus.getDefault().register(obj);
-        }
-    }
-
-    private void unRegisterEventBus() {
-        for (Object obj : mEventSubscriberList) {
-            EventBus.getDefault().unregister(obj);
-        }
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -304,30 +214,5 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
                 checkBeforeGoBack();
                 break;
         }
-    }
-
-    public static class MessageStringEvent {
-        public final String message;
-
-        public MessageStringEvent(String message) {
-            this.message = message;
-        }
-    }
-
-    public static class MessageIntegerEvent {
-        public final Integer message;
-
-        public MessageIntegerEvent(Integer message) {
-            this.message = message;
-        }
-    }
-
-    @Subscribe
-    public void onEvent(MessageStringEvent event) {
-    }
-
-    @Subscribe
-    public void onEvent(MessageIntegerEvent event) {
-
     }
 }

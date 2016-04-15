@@ -16,6 +16,15 @@ public class UserModel extends BmobUser implements Serializable{
     private String signature;
     private List<UserModel> members;
     private List<VoteModel> joinedVotes;
+    private String avater;
+
+    public String getAvater() {
+        return avater;
+    }
+
+    public void setAvater(String avater) {
+        this.avater = avater;
+    }
 
     public List<VoteModel> getJoinedVotes() {
         return joinedVotes;

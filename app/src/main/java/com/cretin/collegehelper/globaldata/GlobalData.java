@@ -29,6 +29,16 @@ public class GlobalData {
      */
     private SendActivity sendFlowActivity;
 
+    private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     // 相册列表, 不用intent传
     public List<String> getListAbulm() {
         List<String> newTemp = new ArrayList<>();

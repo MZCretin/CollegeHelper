@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.fragment.MainCourseFragment;
-import com.cretin.collegehelper.fragment.MainHomeFragment;
+import com.cretin.collegehelper.fragment.MainHomeFragment_;
 import com.cretin.collegehelper.fragment.MainMineFragment;
 import com.cretin.collegehelper.fragment.MainVoteFragment_;
 import com.cretin.collegehelper.utils.FragmentTabUtils;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements FragmentTabUtils.
     @AfterViews
     public void init() {
         getSupportActionBar().hide();
-        list.add(new MainHomeFragment());
+        list.add(new MainHomeFragment_());
         list.add(new MainCourseFragment());
 //        list.add(new MainSocialFragment());
         list.add(new MainVoteFragment_());

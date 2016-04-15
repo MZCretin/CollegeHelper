@@ -13,7 +13,6 @@
     <RadioGroup
         android:gravity="center"
         android:id="@+id/rg_main_rg"
-        android:layout_marginBottom="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -21,34 +20,30 @@
 
         <RadioButton
             android:id="@+id/rb_main_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:button="@null"
+            android:padding="4dp"
             android:drawableTop="@mipmap/ic_tabbar_social_pressed"
             android:gravity="center"
-            android:text="首页"
-            android:textSize="10sp"
-            android:drawablePadding="2dp"
-            android:textColor="@color/main_back_pressed" />
+            />
 
         <RadioButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/rb_main_course"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@mipmap/ic_tabbar_playground_normal"
             android:gravity="center"
-            android:text="课堂"
-            android:textSize="10sp"
-            android:drawablePadding="2dp"
-            android:textColor="@color/main_bottom_radiogroup" />
+            android:padding="4dp"
+            android:checked="false" />
 
         <RadioButton
             android:id="@+id/rb_main_social"
-            android:layout_width="match_parent"
-            android:layout_height="47dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@mipmap/group22x"
@@ -57,29 +52,25 @@
 
         <RadioButton
             android:id="@+id/rb_main_vote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:button="@null"
-            android:textSize="10sp"
-            android:drawablePadding="2dp"
+            android:padding="4dp"
             android:drawableTop="@mipmap/ic_tabbar_found_normal"
             android:gravity="center"
-            android:text="投票"
-            android:textColor="@color/main_bottom_radiogroup" />
+            />
 
         <RadioButton
             android:id="@+id/rb_main_mine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:padding="4dp"
             android:button="@null"
-            android:textSize="10sp"
-            android:drawablePadding="2dp"
             android:drawableTop="@mipmap/ic_tabbar_settings_normal"
             android:gravity="center"
-            android:text="我"
-            android:textColor="@color/main_bottom_radiogroup" />
+            />
     </RadioGroup>
 
 </RelativeLayout>

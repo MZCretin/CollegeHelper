@@ -1,6 +1,8 @@
 package com.cretin.collegehelper;
 
 import android.app.Application;
+import android.content.Context;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.cretin.collegehelper.constants.LocalKeysStorage;
@@ -21,6 +23,7 @@ import cn.bmob.v3.Bmob;
 public class BaseApp extends Application {
     private static BaseApp app;
     private UserModel userModel;
+    private int windowWidth;
     /**
      * 网络状态  observer
      */
@@ -100,5 +103,14 @@ public class BaseApp extends Application {
      */
     public static void showToast(String msg) {
         Toast.makeText(app, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public int getWindowWidth() {
+        if (windowWidth <= 0) {
+            WindowManager wm = (WindowManager) this
+                    .getSystemService(Context.WINDOW_SERVICE);
+            windowWidth = wm.getDefaultDisplay().getWidth();
+        }
+        return windowWidth;
     }
 }
