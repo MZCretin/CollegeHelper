@@ -11,6 +11,15 @@ import java.util.List;
  */
 public class GlobalData {
     private static GlobalData globalData;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     /**
      * 选择和编辑的全局数据

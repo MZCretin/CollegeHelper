@@ -57,6 +57,21 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="4dp" />
 
+    <TextView
+        android:layout_above="@+id/ll_common_send_bottom_container"
+        android:id="@+id/tv_common_send_selected_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:drawableLeft="@mipmap/lbs"
+        android:paddingRight="18dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:drawablePadding="5dp"
+        android:background="#FFFFFF"
+        android:singleLine="true"
+        android:textColor="#0f97fd"
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_alignParentBottom="true"

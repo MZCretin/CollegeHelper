@@ -81,6 +81,7 @@
             android:verticalSpacing="4dp" />
 
         <ImageView
+            android:background="@color/divider_color"
             android:id="@+id/iv_item_rollr_local_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,15 +103,6 @@
             android:layout_marginLeft="6dp"
             android:padding="10dp"
             android:src="@mipmap/profile_more2x" />
-
-        <ImageView
-            android:id="@+id/iv_item_rollr_local_zan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/iv_item_rollr_local_comment"
-            android:padding="10dp"
-            android:src="@mipmap/spotlight_not_like2x" />
 
         <ImageView
             android:id="@+id/iv_item_rollr_local_comment"
@@ -152,19 +144,6 @@
             android:textColor="#0f96fa"
             android:textSize="11sp"
             android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/tv_item_rollr_local_beizan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="17dp"
-            android:clickable="false"
-            android:drawableLeft="@mipmap/like"
-            android:drawablePadding="7dp"
-            android:text="0次被赞"
-            android:textColor="#2099f9"
-            android:textSize="11sp" />
 
         <LinearLayout
             android:id="@+id/ll_item_rollr_local_comment_container"

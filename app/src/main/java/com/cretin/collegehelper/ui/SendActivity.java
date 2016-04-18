@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cretin.collegehelper.BaseApp;
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.adapter.GridViewAdapter;
 import com.cretin.collegehelper.globaldata.GlobalData;
@@ -44,13 +46,15 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
     Button btnCommonSendSend;
     @ViewById
     LinearLayout llCommonSendBottomContainer;
+    @ViewById
+    TextView tvCommonSendSelectedContent;
     //GridView的适配器
     private GridViewAdapter adapter;
     private List<Images> mListImage = new ArrayList<>();
     private int mCurrentImagesCount = 0;
 
     private Images image;
-
+    private String address;
     private String currId;
     private String currName;
     private int type;
@@ -84,6 +88,12 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         addListener();
+
+        address = BaseApp.getInstance().getLocationModel().getAddress();
+        if (TextUtils.isEmpty(address)) {
+            address = "定位失败";
+        }
+        tvCommonSendSelectedContent.setText(address);
 
         //让其他activity访问
         GlobalData.getInstance().setSendFlowActivity(this);
@@ -154,6 +164,8 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 
         GlobalData.getInstance().setToSendImagesList(toSendListImage);
         GlobalData.getInstance().setContent(edCommonSendComtent.getText().toString());
+        GlobalData.getInstance().setAddress(address);
+
 
         Toast.makeText(SendActivity.this, "发送中...", Toast.LENGTH_SHORT).show();
         SendTopicIntentService.startActionSendTopic(SendActivity.this);

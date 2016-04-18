@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_rollr_local_comment3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/tv_item_rollr_local_comment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="福源"
+        android:textColor="#2099f9"
+        android:textSize="12sp" />
+
+    <TextView
+        android:clickable="false"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/tv_item_rollr_local_comment_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="16dp"
+        android:text="感觉自己萌萌哒"
+        android:textColor="#888888"
+        android:textSize="12sp" />
+
+</LinearLayout>

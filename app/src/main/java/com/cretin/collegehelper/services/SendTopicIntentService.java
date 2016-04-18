@@ -96,6 +96,7 @@ public class SendTopicIntentService extends IntentService {
                         flowModel.setResourceUrl(urls);
                         flowModel.setSendTime(System.currentTimeMillis());
                         flowModel.setTopicTontent(GlobalData.getInstance().getContent());
+                        flowModel.setSpotlight(GlobalData.getInstance().getAddress());
                         flowModel.save(SendTopicIntentService.this, new SaveListener() {
                             @Override
                             public void onSuccess() {
@@ -113,6 +114,7 @@ public class SendTopicIntentService extends IntentService {
 
                 @Override
                 public void onError(int statuscode, String errormsg) {
+                    Toast.makeText(SendTopicIntentService.this, errormsg, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

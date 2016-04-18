@@ -6,6 +6,7 @@
 
     <ImageView
         android:scaleType="centerCrop"
+        android:background="@color/divider_color"
         android:id="@+id/iv_item_gridview_sendflow"
         android:layout_width="116dp"
         android:layout_height="116dp" />

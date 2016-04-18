@@ -12,8 +12,16 @@ public class FlowModel extends BmobObject {
     private long sendTime;
     private List<String> resourceUrl;
     private String topicTontent;
-    private List<CommentModel> comments;
     private String spotlight;
+    private List<CommentModel> commentModelList;
+
+    public List<CommentModel> getCommentModelList() {
+        return commentModelList;
+    }
+
+    public void setCommentModelList(List<CommentModel> commentModelList) {
+        this.commentModelList = commentModelList;
+    }
 
     public String getSpotlight() {
         return spotlight;
@@ -21,14 +29,6 @@ public class FlowModel extends BmobObject {
 
     public void setSpotlight(String spotlight) {
         this.spotlight = spotlight;
-    }
-
-    public List<CommentModel> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<CommentModel> comments) {
-        this.comments = comments;
     }
 
     public UserModel getAuthor() {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/btn_main_share"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="文本分享"
+            android:textColor="@color/main_back_pressed"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_main_jubao"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="举报"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_main_delete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="删除"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_main_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:text="取消"
+            android:textColor="#797979"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+</RelativeLayout>

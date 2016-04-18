@@ -9,8 +9,6 @@ public class CommentModel extends BmobObject{
     private String comment;
     private int likeCount;
     private long created;
-    private String nickName;
-    private String avatar;
     private UserModel fromUser;
     private String commentTimeDescription;
 
@@ -36,22 +34,6 @@ public class CommentModel extends BmobObject{
 
     public void setCreated(long created) {
         this.created = created;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
     public UserModel getFromUser() {

@@ -71,7 +71,7 @@ public class VoteMyJoinInActivity extends AppCompatActivity implements SwipyRefr
         UserModel users = BmobUser.getCurrentUser(this, UserModel.class);
         String[] friendIds={users.getObjectId()};//好友的objectId数组
         innerQuery.addWhereContainedIn("objectId", Arrays.asList(friendIds));
-//查询帖子
+        //查询帖子
         BmobQuery<VoteModel> query = new BmobQuery<>();
         query.addWhereMatchesQuery("joinList", "_User", innerQuery);
         query.include("author");

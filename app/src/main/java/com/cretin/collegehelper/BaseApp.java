@@ -2,14 +2,17 @@ package com.cretin.collegehelper;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.cretin.collegehelper.constants.LocalKeysStorage;
+import com.cretin.collegehelper.model.LocationModel;
 import com.cretin.collegehelper.model.UserModel;
 import com.cretin.collegehelper.net.NetChangeObserver;
 import com.cretin.collegehelper.net.NetWorkUtil;
 import com.cretin.collegehelper.net.NetworkStateReceiver;
+import com.cretin.collegehelper.services.LocationService;
 import com.orhanobut.hawk.Hawk;
 import com.orhanobut.hawk.HawkBuilder;
 import com.orhanobut.hawk.LogLevel;
@@ -24,6 +27,20 @@ public class BaseApp extends Application {
     private static BaseApp app;
     private UserModel userModel;
     private int windowWidth;
+
+    public LocationModel getLocationModel() {
+        if(locationModel == null){
+            locationModel = Hawk.get(LocalKeysStorage.LOCATION_DATA);
+        }
+
+        return locationModel;
+    }
+
+    public void setLocationModel(LocationModel locationModel) {
+        this.locationModel = locationModel;
+    }
+
+    private LocationModel locationModel;
     /**
      * 网络状态  observer
      */
@@ -64,6 +81,8 @@ public class BaseApp extends Application {
                 .setStorage(HawkBuilder.newSqliteStorage(this))
                 .setLogLevel(LogLevel.FULL)
                 .build();
+
+        startLocationService();
     }
 
     public static BaseApp getInstance() {
@@ -76,6 +95,13 @@ public class BaseApp extends Application {
     private void initNetState() {
         NetworkStateReceiver.registerNetworkStateReceiver(this);
         NetworkStateReceiver.registerObserver(observer);
+    }
+
+    //启动定位服务
+    private void startLocationService() {
+        Intent startLocationServiceIntent = new Intent(this,
+                LocationService.class);
+        startService(startLocationServiceIntent);
     }
 
     public UserModel getUserModel() {
