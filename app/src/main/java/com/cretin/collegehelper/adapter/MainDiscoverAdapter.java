@@ -27,6 +27,7 @@ import com.cretin.collegehelper.model.CommentModel;
 import com.cretin.collegehelper.model.FlowModel;
 import com.cretin.collegehelper.model.UserModel;
 import com.cretin.collegehelper.popwindow.SelectPopupWindow;
+import com.cretin.collegehelper.ui.ReportActivity_;
 import com.cretin.collegehelper.utils.BigBitmapUtils;
 import com.cretin.collegehelper.views.CircleTransform;
 import com.cretin.collegehelper.views.NoScroolGridView;
@@ -300,7 +301,9 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
 
     //举报
     private void report() {
-
+        Intent intent = new Intent(mContext, ReportActivity_.class);
+        intent.putExtra("flowmodel",mFlowModel);
+        mContext.startActivity(intent);
     }
 
     private void share() {

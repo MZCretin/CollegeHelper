@@ -1,5 +1,6 @@
 package com.cretin.collegehelper.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
@@ -7,7 +8,7 @@ import cn.bmob.v3.BmobObject;
 /**
  * Created by cretin on 4/11/16.
  */
-public class FlowModel extends BmobObject {
+public class FlowModel extends BmobObject implements Serializable{
     private UserModel author;
     private long sendTime;
     private List<String> resourceUrl;

@@ -1,11 +1,13 @@
 package com.cretin.collegehelper.model;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
  * Created by cretin on 4/11/16.
  */
-public class CommentModel extends BmobObject{
+public class CommentModel extends BmobObject implements Serializable{
     private String comment;
     private int likeCount;
     private long created;

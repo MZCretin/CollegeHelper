@@ -142,7 +142,6 @@ public class MainHomeFragment extends Fragment implements SwipyRefreshLayout.OnR
         query.include("author");
         query.setLimit(10);
         query.setSkip(cursor);
-        mCursor += 10;
         query.order("-createdAt");
         query.findObjects(getActivity(), new FindListener<FlowModel>() {
             @Override
@@ -150,7 +149,11 @@ public class MainHomeFragment extends Fragment implements SwipyRefreshLayout.OnR
                 if (cursor == 0) {
                     list.clear();
                 }
+                mCursor += object.size();
                 list.addAll(object);
+                if(object.isEmpty()){
+                    Toast.makeText(getActivity(), "没有更多数据", Toast.LENGTH_SHORT).show();
+                }
                 adapter.notifyDataSetChanged();
                 swipyListviewDiscover.setRefreshing(false);
             }

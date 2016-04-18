@@ -1,8 +1,10 @@
 package com.cretin.collegehelper.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -72,11 +74,23 @@ public class CreateNewVoteActivity extends AppCompatActivity implements ShuoMCli
                 createVote();
             }
         });
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("当您提交一个投票的内容之后,我们将在2个工作日内审核您的投票;当审核通过之后,您添加的成员才会在他自己的用户系统下看到您新建的投票;注意,如果您提交了违法内容,将审核不通过;多次这样将直接导致您无法再使用该系统");
+        builder.setTitle("提示");
+        builder.setPositiveButton("了解", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     private void createVote() {
-        String voteTitle = edCreateVoteName.getText().toString();
-        String des = edCreateVoteDes.getText().toString();
+        final String voteTitle = edCreateVoteName.getText().toString();
+        final String des = edCreateVoteDes.getText().toString();
         if (TextUtils.isEmpty(voteTitle)) {
             Toast.makeText(CreateNewVoteActivity.this, "投票名称不能为空", Toast.LENGTH_SHORT).show();
             return;
@@ -91,7 +105,6 @@ public class CreateNewVoteActivity extends AppCompatActivity implements ShuoMCli
             Toast.makeText(CreateNewVoteActivity.this, "请添加成员", Toast.LENGTH_SHORT).show();
             return;
         }
-
         VoteModel voteModel = new VoteModel();
         voteModel.setCreateTime(System.currentTimeMillis());
         voteModel.setJoinCount(joinList.size());
@@ -104,7 +117,7 @@ public class CreateNewVoteActivity extends AppCompatActivity implements ShuoMCli
         voteModel.setJoinList(relation);
         UserModel users = BaseApp.getInstance().getUserModel();
         voteModel.setAuthor(users);
-        voteModel.save(this, new SaveListener() {
+        voteModel.save(CreateNewVoteActivity.this, new SaveListener() {
 
             @Override
             public void onSuccess() {
@@ -118,6 +131,7 @@ public class CreateNewVoteActivity extends AppCompatActivity implements ShuoMCli
         });
 
         CreateNewVoteActivity.this.finish();
+
     }
 
     @Override
