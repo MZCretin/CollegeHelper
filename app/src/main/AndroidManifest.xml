@@ -73,7 +73,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="1858759760f35f00901025be75a16c9c"></meta-data>
+            android:value="1858759760f35f00901025be75a16c9c" />
 
         <activity
             android:name=".ui.MainActivity_"
@@ -99,7 +99,10 @@
 
         <service android:name=".services.LocationService" />
 
-        <activity android:name=".ui.ReportActivity_"></activity>
+        <activity android:name=".ui.ReportActivity_" />
+        <activity android:name=".ui.CommentActivity" />
+        <activity android:name=".ui.UserDetailsActivity_" />
+        <activity android:name=".ui.NewPaperActivity"></activity>
     </application>
 
 </manifest>

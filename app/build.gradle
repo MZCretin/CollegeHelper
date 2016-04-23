@@ -50,4 +50,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.squareup.okio:okio:1.4.0'
     compile files('libs/AMap_Location_V2.4.1_20160414.jar')
+    compile project(':kanner')
 }

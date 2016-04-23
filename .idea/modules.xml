@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CollegeHelper.iml" filepath="$PROJECT_DIR$/CollegeHelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kanner/kanner.iml" filepath="$PROJECT_DIR$/kanner/kanner.iml" />
     </modules>
   </component>
 </project>

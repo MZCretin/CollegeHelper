@@ -62,7 +62,7 @@ public class MainHomeFragment extends Fragment implements SwipyRefreshLayout.OnR
         swipyListviewDiscover.setOnRefreshListener(this);
 
         list = new ArrayList<>();
-        adapter = new MainDiscoverAdapter(getActivity(), list, R.layout.item_listview_discover);
+        adapter = new MainDiscoverAdapter(getActivity(), list, R.layout.item_listview_discover,0);
         listviewMainDiscover.setAdapter(adapter);
 
         getData(mCursor);

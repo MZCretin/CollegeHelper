@@ -61,6 +61,7 @@ public class SendTopicIntentService extends IntentService {
             flowModel.setResourceUrl(null);
             flowModel.setSendTime(System.currentTimeMillis());
             flowModel.setTopicTontent(GlobalData.getInstance().getContent());
+            flowModel.setSpotlight(GlobalData.getInstance().getAddress());
             flowModel.save(SendTopicIntentService.this, new SaveListener() {
                 @Override
                 public void onSuccess() {

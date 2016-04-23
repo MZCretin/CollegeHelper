@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cretin.collegehelper.R;
-import com.cretin.collegehelper.fragment.MainCourseFragment;
+import com.cretin.collegehelper.fragment.MainCourseFragment_;
 import com.cretin.collegehelper.fragment.MainHomeFragment_;
 import com.cretin.collegehelper.fragment.MainMineFragment_;
 import com.cretin.collegehelper.fragment.MainVoteFragment_;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements FragmentTabUtils.
     public void init() {
         getSupportActionBar().hide();
         list.add(new MainHomeFragment_());
-        list.add(new MainCourseFragment());
+        list.add(new MainCourseFragment_());
 //        list.add(new MainSocialFragment());
         list.add(new MainVoteFragment_());
         list.add(new MainMineFragment_());

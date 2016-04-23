@@ -1,7 +1,6 @@
-package com.cretin.collegehelper.fragment;
+package com.cretin.collegehelper.ui;
 
-
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,61 +22,70 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
 
-@EFragment(R.layout.fragment_main_mine)
-public class MainMineFragment extends Fragment implements View.OnClickListener,SwipyRefreshLayout.OnRefreshListener{
-
+@EActivity(R.layout.activity_user_details)
+public class UserDetailsActivity extends AppCompatActivity implements SwipyRefreshLayout.OnRefreshListener{
     @ViewById
-    TextView tvMineName;
+    ImageView ivUserDetailsInfoBack;
     @ViewById
-    ImageView ivMineSetting;
+    TextView tvUserDetailInfoName;
     @ViewById
-    ImageView ivMineMore;
+    ListView listviewUserDetailInfo;
     @ViewById
-    ListView listviewMine;
-    @ViewById
-    SwipyRefreshLayout meSwipeRefreshLayout;
+    SwipyRefreshLayout userinfoSwipeRefreshLayout;
     private ImageView icon;
     private TextView userId;
     private TextView userDes;
     private TextView flow;
     private TextView age;
+    private UserModel mUserModel;
+    private int mCursor;
     private MainDiscoverAdapter adapter;
     private List<FlowModel> list;
-    private int mCursor;
 
-    public MainMineFragment() {
-
-    }
 
     @AfterViews
     public void init(){
+        getSupportActionBar().hide();
+
+        mUserModel = (UserModel) getIntent().getSerializableExtra("usermodel");
+
         list = new ArrayList<>();
-        adapter = new MainDiscoverAdapter(getActivity(),list,R.layout.item_listview_discover,MainDiscoverAdapter.TYPE_USER_DETAILS);
-        listviewMine.setAdapter(adapter);
+        adapter = new MainDiscoverAdapter(this,list,R.layout.item_listview_discover,MainDiscoverAdapter.TYPE_USER_DETAILS);
+        listviewUserDetailInfo.setAdapter(adapter);
+
         addHeadViews();
-        meSwipeRefreshLayout.setOnRefreshListener(this);
-        getData(mCursor);
-        addHeadViewData();
+
+        if (mUserModel != null) {
+            addHeadViewData(mUserModel);
+            getData(0,mUserModel);
+        }
+
+        userinfoSwipeRefreshLayout.setOnRefreshListener(this);
+
+        ivUserDetailsInfoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDetailsActivity.this.finish();
+            }
+        });
     }
 
-    private void addHeadViewData(){
+    private void addHeadViewData(final UserModel userModel){
         BmobQuery<UserModel> query = new BmobQuery<>();
-        query.addWhereEqualTo("username", BmobUser.getCurrentUser(getActivity(), UserModel.class).getUsername());
-        query.findObjects(getActivity(), new FindListener<UserModel>() {
+        query.addWhereEqualTo("username", userModel.getUsername());
+        query.findObjects(this, new FindListener<UserModel>() {
             @Override
             public void onSuccess(List<UserModel> object) {
-                meSwipeRefreshLayout.setRefreshing(false);
+                userinfoSwipeRefreshLayout.setRefreshing(false);
                 if(object!=null&&!object.isEmpty()) {
                     UserModel userModel = object.get(0);
                     BaseApp.getInstance().setUserModel(userModel);
@@ -87,7 +95,7 @@ public class MainMineFragment extends Fragment implements View.OnClickListener,S
                     if(TextUtils.isEmpty(nickName)){
                         nickName = userModel.getUsername();
                     }
-                    tvMineName.setText(nickName);
+                    tvUserDetailInfoName.setText(nickName);
                     String timeStr;
                     long temp = System.currentTimeMillis() - DateUtils.dataTurntoInt(userModel.getCreatedAt());
                     if (temp < (long) 60 * 60 * 24 * 30 * 1000) {
@@ -101,57 +109,51 @@ public class MainMineFragment extends Fragment implements View.OnClickListener,S
             }
             @Override
             public void onError(int code, String msg) {
-                meSwipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                userinfoSwipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(UserDetailsActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
 
-        if(TextUtils.isEmpty(BmobUser.getCurrentUser(getActivity(), UserModel.class).getAvater())){
-            Picasso.with(getActivity()).load(R.mipmap.default_icon).transform(new CircleTransform()).into(icon);
+        if(TextUtils.isEmpty(userModel.getAvater())){
+            Picasso.with(this).load(R.mipmap.default_icon).transform(new CircleTransform()).into(icon);
         }else{
-            Picasso.with(getActivity()).load(BmobUser.getCurrentUser(getActivity(), UserModel.class).getAvater()).transform(new CircleTransform()).into(icon);
+            Picasso.with(this).load(userModel.getAvater()).transform(new CircleTransform()).into(icon);
         }
 
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<String> listUrl = new ArrayList<>();
-                if(!TextUtils.isEmpty(BmobUser.getCurrentUser(getActivity(), UserModel.class).getAvater())){
-                    listUrl.add(BmobUser.getCurrentUser(getActivity(), UserModel.class).getAvater());
-                    BigBitmapUtils.seeBigBitmap(0, listUrl, getActivity(), false);
+                if(!TextUtils.isEmpty(userModel.getAvater())){
+                    listUrl.add(userModel.getAvater());
+                    BigBitmapUtils.seeBigBitmap(0, listUrl, UserDetailsActivity.this, false);
                 }else {
-                    listUrl.add(BmobUser.getCurrentUser(getActivity(), UserModel.class).getAvater());
-                    BigBitmapUtils.seeBigBitmap(0, listUrl, getActivity(), true);
+                    listUrl.add(userModel.getAvater());
+                    BigBitmapUtils.seeBigBitmap(0, listUrl, UserDetailsActivity.this, true);
                 }
             }
         });
     }
 
     private void addHeadViews() {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_listview_mine_head, null);
+        View view = LayoutInflater.from(this).inflate(R.layout.item_listview_mine_head, null);
         icon = (ImageView) view.findViewById(R.id.iv_mine_user_icon);
         userId = (TextView) view.findViewById(R.id.tv_mine_user_nickname);
         userDes = (TextView) view.findViewById(R.id.tv_mine_user_des);
         flow = (TextView) view.findViewById(R.id.tv_mine_flow);
         age = (TextView) view.findViewById(R.id.tv_mine_age);
 
-        icon.setOnClickListener(this);
-        listviewMine.addHeaderView(view);
+        listviewUserDetailInfo.addHeaderView(view);
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    private void getData(final int cursor) {
+    private void getData(final int cursor,UserModel userModel) {
         BmobQuery<FlowModel> query = new BmobQuery<>();
         query.include("author");
         query.setLimit(10);
         query.setSkip(cursor);
-        query.addWhereEqualTo("author",new BmobPointer(BmobUser.getCurrentUser(getActivity(), UserModel.class)));
+        query.addWhereEqualTo("author",userModel);
         query.order("-createdAt");
-        query.findObjects(getActivity(), new FindListener<FlowModel>() {
+        query.findObjects(this, new FindListener<FlowModel>() {
             @Override
             public void onSuccess(List<FlowModel> object) {
                 if (cursor == 0) {
@@ -160,16 +162,16 @@ public class MainMineFragment extends Fragment implements View.OnClickListener,S
                 mCursor += object.size();
                 list.addAll(object);
                 if(object.isEmpty()){
-                    Toast.makeText(getActivity(), "没有更多数据", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserDetailsActivity.this, "没有更多数据", Toast.LENGTH_SHORT).show();
                 }
                 adapter.notifyDataSetChanged();
-                meSwipeRefreshLayout.setRefreshing(false);
+                userinfoSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onError(int code, String msg) {
-                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-                meSwipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(UserDetailsActivity.this, msg, Toast.LENGTH_SHORT).show();
+                userinfoSwipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -177,10 +179,11 @@ public class MainMineFragment extends Fragment implements View.OnClickListener,S
     @Override
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
         if(SwipyRefreshLayoutDirection.TOP==direction){
-            getData(0);
-            addHeadViewData();
+            getData(0,mUserModel);
+            addHeadViewData(mUserModel);
         }else if(SwipyRefreshLayoutDirection.BOTTOM==direction){
-            getData(mCursor);
+            getData(mCursor,mUserModel);
         }
     }
+
 }

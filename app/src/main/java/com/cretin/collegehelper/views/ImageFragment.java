@@ -87,7 +87,7 @@ public class ImageFragment extends Fragment implements OnDropListener{
         });
         image.enable();
         if (iconFlag) {
-            Picasso.with(getActivity()).load(imageUrl).into(image, new ImageLoadedCallback(progressBar, mContext));
+            Picasso.with(getActivity()).load(R.mipmap.default_icon).into(image,new ImageLoadedCallback(progressBar, mContext));
         } else {
             Picasso.with(getActivity()).load(imageUrl).into(image, new ImageLoadedCallback(progressBar, mContext));
         }

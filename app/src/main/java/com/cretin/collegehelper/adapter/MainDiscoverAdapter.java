@@ -28,6 +28,7 @@ import com.cretin.collegehelper.model.FlowModel;
 import com.cretin.collegehelper.model.UserModel;
 import com.cretin.collegehelper.popwindow.SelectPopupWindow;
 import com.cretin.collegehelper.ui.ReportActivity_;
+import com.cretin.collegehelper.ui.UserDetailsActivity_;
 import com.cretin.collegehelper.utils.BigBitmapUtils;
 import com.cretin.collegehelper.views.CircleTransform;
 import com.cretin.collegehelper.views.NoScroolGridView;
@@ -48,10 +49,13 @@ import cn.bmob.v3.listener.DeleteListener;
  */
 public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements SelectPopupWindow.OnPopWindowClickListener {
     private SelectPopupWindow menuWindow;
+    public static final int TYPE_USER_DETAILS = 1;
     private FlowModel mFlowModel;
+    private int type;
 
-    public MainDiscoverAdapter(Context context, List<FlowModel> mDatas, int itemLayoutId) {
+    public MainDiscoverAdapter(Context context, List<FlowModel> mDatas, int itemLayoutId, int type) {
         super(context, mDatas, itemLayoutId);
+        this.type = type;
     }
 
     @Override
@@ -148,7 +152,7 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
         }
 
         String address = item.getSpotlight();
-        if(TextUtils.isEmpty(address)||address.equals("定位失败")){
+        if (TextUtils.isEmpty(address) || address.equals("定位失败")) {
             address = "暂无地理位置信息";
         }
         spotlight.setText(address);
@@ -181,17 +185,28 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
             @Override
             public void onClick(View v) {
                 //评论
-                doComment(item,position);
+                doComment(item, position);
             }
         });
 
         //获取所有评论
-        getAllComment(item,container);
+        getAllComment(item, container);
+
+        if (type != TYPE_USER_DETAILS) {
+            avater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, UserDetailsActivity_.class);
+                    intent.putExtra("usermodel", item.getAuthor());
+                    mContext.startActivity(intent);
+                }
+            });
+        }
     }
 
     private void getAllComment(FlowModel flowModel, final LinearLayout commentContainer) {
         commentContainer.removeAllViews();
-        if(flowModel.getCommentModelList()==null){
+        if (flowModel.getCommentModelList() == null) {
             return;
         }
         for (final CommentModel comment : flowModel.getCommentModelList()) {
@@ -203,7 +218,7 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
             tvCommentName.setLayoutParams(tvCommentNameParams);
             tvCommentDetails.setLayoutParams(tvCommentDetailsParams);
             String nickName = comment.getFromUser().getNickName();
-            if(TextUtils.isEmpty(nickName)){
+            if (TextUtils.isEmpty(nickName)) {
                 nickName = comment.getFromUser().getUsername();
             }
             tvCommentName.setText(nickName);
@@ -302,7 +317,7 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
     //举报
     private void report() {
         Intent intent = new Intent(mContext, ReportActivity_.class);
-        intent.putExtra("flowmodel",mFlowModel);
+        intent.putExtra("flowmodel", mFlowModel);
         mContext.startActivity(intent);
     }
 
