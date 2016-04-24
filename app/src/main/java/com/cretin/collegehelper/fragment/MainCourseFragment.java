@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.ui.NewPaperActivity_;
+import com.cretin.collegehelper.ui.PaperMyJoinedActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -72,6 +73,13 @@ public class MainCourseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), NewPaperActivity_.class));
+            }
+        });
+
+        relaMyJoinedContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),PaperMyJoinedActivity_.class));
             }
         });
     }

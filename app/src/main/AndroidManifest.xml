@@ -102,7 +102,9 @@
         <activity android:name=".ui.ReportActivity_" />
         <activity android:name=".ui.CommentActivity" />
         <activity android:name=".ui.UserDetailsActivity_" />
-        <activity android:name=".ui.NewPaperActivity_"></activity>
+        <activity android:name=".ui.NewPaperActivity_" />
+        <activity android:name=".ui.PaperMyJoinedActivity_" />
+        <activity android:name=".ui.PaperingActivity_"></activity>
     </application>
 
 </manifest>

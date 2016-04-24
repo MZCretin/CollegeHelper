@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_my_joined"
-            android:text="我需要完成的考试"
+            android:text="未完成的考试"
             android:textSize="16sp" />
 
     </RelativeLayout>

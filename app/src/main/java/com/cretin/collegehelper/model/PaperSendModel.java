@@ -1,5 +1,6 @@
 package com.cretin.collegehelper.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
@@ -8,12 +9,12 @@ import cn.bmob.v3.datatype.BmobRelation;
 /**
  * Created by cretin on 4/23/16.
  */
-public class PaperSendModel extends BmobObject{
+public class PaperSendModel extends BmobObject implements Serializable{
     private long createTime;
     private UserModel author;
     private BmobRelation joinList;
     private String title;
-    private double period;
+    private int period;
     private List<PaperModel> testContent;
 
     public List<PaperModel> getTestContent() {
@@ -56,11 +57,11 @@ public class PaperSendModel extends BmobObject{
         this.title = title;
     }
 
-    public double getPeriod() {
+    public int getPeriod() {
         return period;
     }
 
-    public void setPeriod(double period) {
+    public void setPeriod(int period) {
         this.period = period;
     }
 }

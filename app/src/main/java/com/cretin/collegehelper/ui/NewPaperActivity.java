@@ -64,7 +64,7 @@ public class NewPaperActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         list = new ArrayList<>();
-        adapter = new ListViewNewPaperAdapter(this, list, R.layout.item_listview_new_paper);
+        adapter = new ListViewNewPaperAdapter(this, list, R.layout.item_listview_new_paper, ListViewNewPaperAdapter.TYPE_TEACHER);
         addEmptyView();
         listviewNewPaper.setAdapter(adapter);
 
@@ -91,10 +91,25 @@ public class NewPaperActivity extends AppCompatActivity {
     }
 
     private void commit() {
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             Toast.makeText(NewPaperActivity.this, "没有可以提交的试题", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //检查题目的正确答案是否填写
+        boolean flag = false;
+        String message = "";
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getCorrectAnswer() == 0) {
+                message += (i+1) + "、";
+                flag = true;
+            }
+        }
+        if(flag){
+            Toast.makeText(NewPaperActivity.this, "您还有第"+message+"题没有完成", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         final EditText editText = new EditText(this);
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         editText.setBackground(null);
@@ -102,7 +117,7 @@ public class NewPaperActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String title = editText.getText().toString();
-                if(TextUtils.isEmpty(title)){
+                if (TextUtils.isEmpty(title)) {
                     Toast.makeText(NewPaperActivity.this, "标题非要不可哦", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -154,7 +169,7 @@ public class NewPaperActivity extends AppCompatActivity {
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        if(id==0){
+        if (id == 0) {
             Map<String, Integer> images = new HashMap<>();
             images.put(OpenFileDialog.sRoot, R.mipmap.filedialog_root);
             images.put(OpenFileDialog.sParent, R.mipmap.filedialog_folder_up);
@@ -186,6 +201,7 @@ public class NewPaperActivity extends AppCompatActivity {
                         new FileInputStream(file));//考虑到编码格式
                 BufferedReader bufferedReader = new BufferedReader(read);
                 String lineTxt = null;
+                list.clear();
                 while ((lineTxt = bufferedReader.readLine()) != null) {
                     if (lins % 2 == 0) {
                         paper = new PaperModel();
@@ -194,12 +210,17 @@ public class NewPaperActivity extends AppCompatActivity {
                         if (lineTxt.contains("A)") && lineTxt.contains("B)") && lineTxt.contains("C)")) {
                             paper.setAnswer(lineTxt);
                             list.add(paper);
+                        } else {
+                            Toast.makeText(NewPaperActivity.this, "内容格式错误,请重新选择文件", Toast.LENGTH_SHORT).show();
                         }
                     }
                     lins++;
                 }
                 adapter.notifyDataSetChanged();
                 read.close();
+                if (list.isEmpty()) {
+                    Toast.makeText(NewPaperActivity.this, "内容格式错误,请重新选择文件", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(NewPaperActivity.this, "找不到指定的文件", Toast.LENGTH_SHORT).show();
             }

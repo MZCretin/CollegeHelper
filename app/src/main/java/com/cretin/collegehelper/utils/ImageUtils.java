@@ -25,7 +25,7 @@ import java.util.Date;
 public class ImageUtils {
     private static final int TYPE_FILE_IMAGE = 1;
     private static final int TYPE_FILE_VEDIO = 2;
-    private static final String FILE_ROOT_PATH = "/sdcard/rollerkid/";
+    private static final String FILE_ROOT_PATH = "/sdcard/college/";
     public static final int MAX_WIDTH_OR_HEIGHT = 1600; //最大1600像素高或者宽
 
     /***

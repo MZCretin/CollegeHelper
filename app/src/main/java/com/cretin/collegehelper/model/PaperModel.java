@@ -1,12 +1,23 @@
 package com.cretin.collegehelper.model;
 
+import java.io.Serializable;
+
 /**
  * Created by cretin on 4/23/16.
  */
-public class PaperModel {
+public class PaperModel implements Serializable{
     private String title;
     private String answer;
     private int answerIndex;
+    private int correctAnswer;
+
+    public int getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(int correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
 
     public int getAnswerIndex() {
         return answerIndex;

@@ -89,7 +89,8 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 
         addListener();
 
-        address = BaseApp.getInstance().getLocationModel().getAddress();
+        if (BaseApp.getInstance().getLocationModel() != null)
+            address = BaseApp.getInstance().getLocationModel().getAddress();
         if (TextUtils.isEmpty(address)) {
             address = "定位失败";
         }

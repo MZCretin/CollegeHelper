@@ -14,8 +14,12 @@ import java.util.List;
  * Created by cretin on 4/23/16.
  */
 public class ListViewNewPaperAdapter extends CommonAdapter<PaperModel> {
-    public ListViewNewPaperAdapter(Context context, List<PaperModel> mDatas, int itemLayoutId) {
+    public static final int TYPE_TEACHER = 0;
+    public static final int TYPE_STUDENT = 1;
+    private int type ;
+    public ListViewNewPaperAdapter(Context context, List<PaperModel> mDatas, int itemLayoutId,int type) {
         super(context, mDatas, itemLayoutId);
+        this.type = type;
     }
 
     @Override
@@ -38,9 +42,17 @@ public class ListViewNewPaperAdapter extends CommonAdapter<PaperModel> {
 
         radioGroup.setOnCheckedChangeListener(null);
         radioGroup.clearCheck();
-        if (item.getAnswerIndex() != 0) {
-            ((RadioButton) radioGroup.getChildAt(item.getAnswerIndex() - 1)).setChecked(true);
+
+        if(type == TYPE_TEACHER){
+            if (item.getCorrectAnswer() != 0) {
+                ((RadioButton) radioGroup.getChildAt(item.getCorrectAnswer() - 1)).setChecked(true);
+            }
+        }else{
+            if (item.getAnswerIndex() != 0) {
+                ((RadioButton) radioGroup.getChildAt(item.getAnswerIndex() - 1)).setChecked(true);
+            }
         }
+
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -48,16 +60,32 @@ public class ListViewNewPaperAdapter extends CommonAdapter<PaperModel> {
                 if (group.getTag().equals(item.getTitle())) {
                     switch (checkedId) {
                         case R.id.rb_item_listview_new_paper_a:
-                            item.setAnswerIndex(1);
+                            if(type == TYPE_TEACHER){
+                                item.setCorrectAnswer(1);
+                            }else {
+                                item.setAnswerIndex(1);
+                            }
                             break;
                         case R.id.rb_item_listview_new_paper_b:
-                            item.setAnswerIndex(2);
+                            if(type == TYPE_TEACHER){
+                                item.setCorrectAnswer(2);
+                            }else {
+                                item.setAnswerIndex(2);
+                            }
                             break;
                         case R.id.rb_item_listview_new_paper_c:
-                            item.setAnswerIndex(3);
+                            if(type == TYPE_TEACHER){
+                                item.setCorrectAnswer(3);
+                            }else {
+                                item.setAnswerIndex(3);
+                            }
                             break;
                         case R.id.rb_item_listview_new_paper_d:
-                            item.setAnswerIndex(4);
+                            if(type == TYPE_TEACHER){
+                                item.setCorrectAnswer(4);
+                            }else {
+                                item.setAnswerIndex(4);
+                            }
                             break;
                     }
                 }
