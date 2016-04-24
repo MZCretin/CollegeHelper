@@ -1,12 +1,14 @@
 package com.cretin.collegehelper.fragment;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.cretin.collegehelper.R;
+import com.cretin.collegehelper.ui.NewPaperActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -61,6 +63,17 @@ public class MainCourseFragment extends Fragment {
                 }
             });
         }
+
+        addListener();
+    }
+
+    private void addListener() {
+        relaNewPaperContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NewPaperActivity_.class));
+            }
+        });
     }
 
 }

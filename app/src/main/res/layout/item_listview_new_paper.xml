@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:padding="5dp"
+        android:id="@+id/tv_item_listview_new_paper_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="5、C语言提供的合法的数据类型关键字是_________. " />
+
+    <RadioGroup
+        android:id="@+id/rg_item_listview_new_paper"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rb_item_listview_new_paper_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A) Double" />
+
+        <RadioButton
+            android:id="@+id/rb_item_listview_new_paper_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B) short" />
+
+        <RadioButton
+            android:id="@+id/rb_item_listview_new_paper_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C) integer" />
+
+        <RadioButton
+            android:id="@+id/rb_item_listview_new_paper_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D) Char" />
+    </RadioGroup>
+
+</LinearLayout>

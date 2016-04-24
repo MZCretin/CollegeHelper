@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -117,7 +118,7 @@ public class AddMembersActivity extends AppCompatActivity implements AddMemberLi
                 break;
             case R.id.tv_add_member_done:
                 if (!listId.isEmpty()) {
-                    addMemberSyccess();
+                    addMemberSuccess();
                 } else {
                     Toast.makeText(AddMembersActivity.this, "未选择任何成员", Toast.LENGTH_SHORT).show();
                 }
@@ -125,8 +126,8 @@ public class AddMembersActivity extends AppCompatActivity implements AddMemberLi
         }
     }
 
-    private void addMemberSyccess() {
-        final UserModel userModel = BaseApp.getInstance().getUserModel();
+    private void addMemberSuccess() {
+        final UserModel userModel = BmobUser.getCurrentUser(this, UserModel.class);
         userModel.setMembers(listId);
         userModel.update(this, new UpdateListener() {
             @Override
