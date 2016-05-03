@@ -18,6 +18,7 @@ import com.cretin.collegehelper.R;
 public class SelectPopupWindow extends PopupWindow implements View.OnClickListener {
     public static final int TYPE_MAIN_HOME = 0;
     public static final int TYPE_SETTING = 1;
+    public static final int TYPE_SELECT_PIC = 2;
     private View mMenuView;
     private OnPopWindowClickListener listener;
 
@@ -34,11 +35,15 @@ public class SelectPopupWindow extends PopupWindow implements View.OnClickListen
         this.listener = listener;
         //设置按钮监听
         if (type == TYPE_MAIN_HOME) {
-            initViewMain(context,flag);
+            initViewMain(context, flag);
         }
 
         if (type == TYPE_SETTING) {
             initViewSetting(context);
+        }
+
+        if (type == TYPE_SELECT_PIC) {
+            initViewSelectedPic(context);
         }
 
         //设置SelectPicPopupWindow的View
@@ -71,7 +76,21 @@ public class SelectPopupWindow extends PopupWindow implements View.OnClickListen
         });
     }
 
-    private void initViewMain(Activity context,boolean flag) {
+    private void initViewSelectedPic(Activity context) {
+        Button btnCamera, btnPhoto, btnCancel;
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mMenuView = inflater.inflate(R.layout.layout_popwindow_dialog_select_pic, null);
+        btnCamera = (Button) mMenuView.findViewById(R.id.btn_select_pic_camera);
+        btnPhoto = (Button) mMenuView.findViewById(R.id.btn_select_pic_album);
+        btnCancel = (Button) mMenuView.findViewById(R.id.btn_select_pic_cancel);
+
+        btnCamera.setOnClickListener(this);
+        btnPhoto.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
+    }
+
+    private void initViewMain(Activity context, boolean flag) {
         Button btnShare, btnJubao, btnDelete, btnCancel;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -95,14 +114,16 @@ public class SelectPopupWindow extends PopupWindow implements View.OnClickListen
     }
 
     private void initViewSetting(Activity context) {
-        Button btnAbout, btnExit, btnCancel;
+        Button btnAbout, btnExit, btnUpdate, btnCancel;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMenuView = inflater.inflate(R.layout.layout_popwindow_dialog_setting, null);
         btnAbout = (Button) mMenuView.findViewById(R.id.btn_setting_about);
         btnExit = (Button) mMenuView.findViewById(R.id.btn_setting_exit);
+        btnUpdate = (Button) mMenuView.findViewById(R.id.btn_setting_update);
         btnCancel = (Button) mMenuView.findViewById(R.id.btn_setting_cancel);
 
+        btnUpdate.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnAbout.setOnClickListener(this);

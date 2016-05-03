@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.cretin.collegehelper.ui.PaperMyFinishedActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/iv_my_finished_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:src="@mipmap/back2x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="已完成的考试"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipy_listview_my_finished"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listview_my_finished"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/divider_color"
+            android:dividerHeight="5dp"></ListView>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+</LinearLayout>

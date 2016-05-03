@@ -28,6 +28,10 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <!-- 推送所需的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- SD卡读写权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -104,7 +108,44 @@
         <activity android:name=".ui.UserDetailsActivity_" />
         <activity android:name=".ui.NewPaperActivity_" />
         <activity android:name=".ui.PaperMyJoinedActivity_" />
-        <activity android:name=".ui.PaperingActivity_"></activity>
+        <activity android:name=".ui.PaperingActivity_" />
+
+        <service
+            android:name="cn.bmob.push.lib.service.PushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process="cn.bmob.push">
+            <intent-filter>
+                <action android:name="cn.bmob.push.lib.service.PushService" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="cn.bmob.push.PushReceiver">
+            <intent-filter>
+
+                <!-- 系统启动完成后会调用 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- 解锁完成后会调用 -->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <!-- 监听网络连通性 -->
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 第四部中创建的消息接收器，在这里进行注册 -->
+        <receiver android:name=".services.MyPushMessageReceiver">
+            <intent-filter>
+                <action android:name="cn.bmob.push.action.MESSAGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".ui.PaperMyFinishedActivity_" />
+        <activity android:name=".ui.PaperMyCreatedActivity_" />
+        <activity android:name=".ui.PaperDetailsActivity_" />
+        <activity android:name=".ui.PaperManagerActivity_" />
+        <activity android:name=".ui.UpdateUserInfoActivity_" />
+        <activity android:name=".ui.ShowWebViewActivity_" />
+        <activity android:name=".ui.AboutActivity"></activity>
     </application>
 
 </manifest>

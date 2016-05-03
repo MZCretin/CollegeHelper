@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cretin.collegehelper.ui.ShowWebViewActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/iv_show_webview_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:src="@mipmap/back2x" />
+
+        <TextView
+            android:id="@+id/iv_show_webview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxWidth="300dp"
+            android:singleLine="true"
+            android:text="三峡大学教务网"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <com.cretin.collegehelper.views.ProgressWebView
+        android:id="@+id/iv_show_webview_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

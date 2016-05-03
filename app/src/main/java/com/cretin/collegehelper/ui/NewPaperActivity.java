@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -101,32 +102,54 @@ public class NewPaperActivity extends AppCompatActivity {
         String message = "";
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getCorrectAnswer() == 0) {
-                message += (i+1) + "、";
+                message += (i + 1) + "、";
                 flag = true;
             }
         }
-        if(flag){
-            Toast.makeText(NewPaperActivity.this, "您还有第"+message+"题没有完成", Toast.LENGTH_SHORT).show();
+        if (flag) {
+            Toast.makeText(NewPaperActivity.this, "您还有第" + message + "题没有完成", Toast.LENGTH_SHORT).show();
             return;
         }
 
         final EditText editText = new EditText(this);
         editText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         editText.setBackground(null);
-        new AlertDialog.Builder(this).setTitle("请为这次测试设置一个标题").setView(editText).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        editText.setHint("请输入该测试的标题");
+        final EditText editText2 = new EditText(this);
+        editText2.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        editText2.setBackground(null);
+        editText2.setHint("请输入该测试持续的时间(分钟)");
+        editText2.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        linearLayout.setBackground(null);
+        linearLayout.addView(editText);
+        linearLayout.addView(editText2);
+        new AlertDialog.Builder(this).setView(linearLayout).setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String title = editText.getText().toString();
+                int minute = Integer.parseInt(editText2.getText().toString());
                 if (TextUtils.isEmpty(title)) {
                     Toast.makeText(NewPaperActivity.this, "标题非要不可哦", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(TextUtils.isEmpty(editText2.getText().toString())){
+                    Toast.makeText(NewPaperActivity.this, "请设置时间", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (minute <= 0) {
+                    Toast.makeText(NewPaperActivity.this, "时间必须为正整数", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 PaperSendModel paperModel = new PaperSendModel();
                 paperModel.setCreateTime(System.currentTimeMillis());
-                paperModel.setTitle(title);
+                paperModel.setTitle(title+"-"+System.currentTimeMillis());
                 paperModel.setAuthor(BmobUser.getCurrentUser(NewPaperActivity.this, UserModel.class));
                 paperModel.setPeriod(2);
                 paperModel.setTestContent(list);
+                paperModel.setPeriod(minute);
                 BmobRelation relation = new BmobRelation();
                 for (UserModel user : joinList) {
                     relation.add(user);

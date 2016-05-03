@@ -24,20 +24,12 @@
             android:id="@+id/iv_mine_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/iv_mine_more"
             android:padding="9dp"
-            android:src="@mipmap/profile_setting2x" />
-
-        <ImageView
-            android:id="@+id/iv_mine_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="9dp"
-            android:padding="9dp"
-            android:src="@mipmap/profile_more2x" />
+            android:src="@mipmap/profile_setting2x" />
+
     </RelativeLayout>
 
     <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout

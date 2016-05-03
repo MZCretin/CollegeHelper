@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_item_paper_manager_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:paddingTop="5dp"
+                android:id="@+id/tv_item_listview_paper_manager_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="提交时间:2016/04/29 20:00"
+                android:textColor="@color/textcolor"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_item_listview_paper_manager_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="分数:79"
+                android:paddingTop="5dp"
+                android:textColor="@color/textcolor"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_item_listview_paper_manager_commiter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="提交用户:"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_item_listview_paper_manager_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="状态:不合格"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_item_listview_paper_manager_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="提交答案:A B A A B A A B A A B A A B A A B A "
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_item_listview_paper_manager_answer_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="答案描述:对 对 对 错 对 错 错 错 错 错 错"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_item_listview_paper_manager_yellow"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/ll_item_paper_manager_container"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:padding="5dp"
+        android:src="@mipmap/yellowboy" />
+
+    <ImageView
+        android:padding="20dp"
+        android:id="@+id/iv_item_listview_paper_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/okcopy2x" />
+
+</RelativeLayout>

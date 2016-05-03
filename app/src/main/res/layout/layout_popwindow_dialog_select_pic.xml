@@ -17,33 +17,25 @@
         >
 
         <Button
-            android:id="@+id/btn_setting_about"
+            android:id="@+id/btn_select_pic_camera"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:text="关       于"
-            android:textColor="@color/main_back_pressed"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/btn_setting_update"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="修改资料"
+            android:text="相机"
             android:textColor="@color/main_back_pressed"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_setting_exit"
+            android:id="@+id/btn_select_pic_album"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:text="退出登录"
-            android:textColor="@color/red"
+            android:text="相册"
+            android:textColor="@color/main_back_pressed"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_setting_cancel"
+            android:id="@+id/btn_select_pic_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

@@ -16,6 +16,7 @@ import java.util.List;
 public class ListViewNewPaperAdapter extends CommonAdapter<PaperModel> {
     public static final int TYPE_TEACHER = 0;
     public static final int TYPE_STUDENT = 1;
+    public static final int TYPE_TEACHER_DETAILS = 2;
     private int type ;
     public ListViewNewPaperAdapter(Context context, List<PaperModel> mDatas, int itemLayoutId,int type) {
         super(context, mDatas, itemLayoutId);

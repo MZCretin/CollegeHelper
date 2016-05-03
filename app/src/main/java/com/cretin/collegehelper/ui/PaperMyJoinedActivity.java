@@ -59,9 +59,23 @@ public class PaperMyJoinedActivity extends AppCompatActivity {
         listviewPaperMyJoinin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(PaperMyJoinedActivity.this, PaperingActivity_.class);
-                intent.putExtra("papermodel", list.get(position));
-                startActivity(intent);
+                PaperSendModel item = list.get(position);
+                long tempTime = item.getCreateTime() + (item.getPeriod() * 1000 * 60);
+                long systemTime = System.currentTimeMillis();
+                if (systemTime <= tempTime && systemTime >= item.getCreateTime()) {
+                    Intent intent = new Intent(PaperMyJoinedActivity.this, PaperingActivity_.class);
+                    intent.putExtra("papermodel", list.get(position));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(PaperMyJoinedActivity.this, "该测试已过期,无法再访问", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        ivPaperMyjoinedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaperMyJoinedActivity.this.finish();
             }
         });
     }
@@ -71,7 +85,6 @@ public class PaperMyJoinedActivity extends AppCompatActivity {
         UserModel users = BmobUser.getCurrentUser(this, UserModel.class);
         String[] friendIds = {users.getObjectId()};//好友的objectId数组
         innerQuery.addWhereContainedIn("objectId", Arrays.asList(friendIds));
-        //查询帖子
         BmobQuery<PaperSendModel> query = new BmobQuery<>();
         query.addWhereMatchesQuery("joinList", "_User", innerQuery);
         query.order("-createdAt");

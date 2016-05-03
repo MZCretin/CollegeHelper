@@ -17,7 +17,9 @@ import com.orhanobut.hawk.Hawk;
 import com.orhanobut.hawk.HawkBuilder;
 import com.orhanobut.hawk.LogLevel;
 
+import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobInstallation;
 
 
 /**
@@ -75,6 +77,10 @@ public class BaseApp extends Application {
         initNetState();
 
         Bmob.initialize(this, "ee3cfb7f92e0ffc42dc42ba799079182");
+        // 使用推送服务时的初始化操作
+        BmobInstallation.getCurrentInstallation(this).save();
+        // 启动推送服务
+        BmobPush.startWork(this);
 
         Hawk.init(this)
                 .setEncryptionMethod(HawkBuilder.EncryptionMethod.NO_ENCRYPTION)

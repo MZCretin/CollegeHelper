@@ -17,6 +17,51 @@ public class UserModel extends BmobUser implements Serializable{
     private List<UserModel> members;
     private List<VoteModel> joinedVotes;
     private String avater;
+    private String age;
+    private String sex;
+    private String work;
+    private String commpany;
+    private String school;
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getWork() {
+        return work;
+    }
+
+    public void setWork(String work) {
+        this.work = work;
+    }
+
+    public String getCommpany() {
+        return commpany;
+    }
+
+    public void setCommpany(String commpany) {
+        this.commpany = commpany;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
 
     public String getAvater() {
         return avater;
