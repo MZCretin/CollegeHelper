@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF"
-    tools:context="com.cretin.collegehelper.ui.VoteMyJoinInActivity">
+    tools:context="com.cretin.collegehelper.ui.VoteMyJoinInUnFinishActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:background="#FFFFFF">
 
         <ImageView
-            android:id="@+id/iv_vote_my_joinin_back"
+            android:id="@+id/iv_vote_unfinished_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="17dp"
@@ -23,23 +23,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="我参与过的投票"
+            android:text="我未完成的投票"
             android:textSize="18sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
 
     <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/swipy_listview_vote_unfinished"
         android:layout_width="match_parent"
-        android:id="@+id/swipy_listview_vote_my_joinin"
         android:layout_height="match_parent">
 
         <ListView
-            android:id="@+id/listview_vote_my_joinin"
-            android:dividerHeight="5dp"
-            android:divider="@color/divider_color"
+            android:id="@+id/listview_vote_unfinished"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:divider="@color/divider_color"
+            android:dividerHeight="5dp" />
     </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 </LinearLayout>

@@ -20,6 +20,7 @@ import com.orhanobut.hawk.LogLevel;
 import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
+import cn.waps.AppConnect;
 
 
 /**
@@ -89,6 +90,8 @@ public class BaseApp extends Application {
                 .build();
 
         startLocationService();
+
+        AppConnect.getInstance("5070b982ef1688b91f1d4c127d2f122a","default", this);
     }
 
     public static BaseApp getInstance() {

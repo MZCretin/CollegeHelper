@@ -1,17 +1,15 @@
 package com.cretin.collegehelper.ui;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cretin.collegehelper.R;
-import com.cretin.collegehelper.adapter.VoteMyJoininListViewAdapter;
+import com.cretin.collegehelper.adapter.VoteMyJoinUnFinishedAdapter;
 import com.cretin.collegehelper.model.UserModel;
-import com.cretin.collegehelper.model.VoteModel;
+import com.cretin.collegehelper.model.VoteResultModel;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
@@ -20,7 +18,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -35,24 +32,15 @@ public class VoteMyJoinInActivity extends AppCompatActivity implements SwipyRefr
     ListView listviewVoteMyJoinin;
     @ViewById
     SwipyRefreshLayout swipyListviewVoteMyJoinin;
-    private List<VoteModel> list;
-    private VoteMyJoininListViewAdapter adapter;
+    private List<VoteResultModel> list;
+    private VoteMyJoinUnFinishedAdapter adapter;
 
     @AfterViews
     public void init(){
         getSupportActionBar().hide();
         list = new ArrayList<>();
-        adapter = new VoteMyJoininListViewAdapter(this,list,R.layout.item_listview_vote_my_joinin);
+        adapter = new VoteMyJoinUnFinishedAdapter(this,list,R.layout.item_listview_vote_unfinished);
         listviewVoteMyJoinin.setAdapter(adapter);
-
-        listviewVoteMyJoinin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(VoteMyJoinInActivity.this,UserVoteActivity_.class);
-                intent.putExtra("info",list.get(position));
-                startActivity(intent);
-            }
-        });
 
         swipyListviewVoteMyJoinin.setOnRefreshListener(this);
 
@@ -67,23 +55,14 @@ public class VoteMyJoinInActivity extends AppCompatActivity implements SwipyRefr
     }
 
     private void initData() {
-        BmobQuery<UserModel> innerQuery = new BmobQuery<>();
-        UserModel users = BmobUser.getCurrentUser(this, UserModel.class);
-        String[] friendIds={users.getObjectId()};//好友的objectId数组
-        innerQuery.addWhereContainedIn("objectId", Arrays.asList(friendIds));
-        //查询帖子
-        BmobQuery<VoteModel> query = new BmobQuery<>();
-        query.addWhereMatchesQuery("joinList", "_User", innerQuery);
-        query.include("author");
-        query.findObjects(this, new FindListener<VoteModel>() {
+        BmobQuery<VoteResultModel> query = new BmobQuery<>();
+        query.addWhereEqualTo("voteUser", BmobUser.getCurrentUser(this, UserModel.class));
+        query.include("voteInfo,voteUser");
+        query.findObjects(this, new FindListener<VoteResultModel>() {
             @Override
-            public void onSuccess(List<VoteModel> object) {
+            public void onSuccess(List<VoteResultModel> object) {
                 list.clear();
-                for (VoteModel v:object) {
-                    if(v.getVerifireFlag()==1){
-                        list.add(v);
-                    }
-                }
+                list.addAll(object);
                 adapter.notifyDataSetChanged();
                 swipyListviewVoteMyJoinin.setRefreshing(false);
             }

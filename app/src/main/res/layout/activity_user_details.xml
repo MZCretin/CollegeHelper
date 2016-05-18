@@ -27,25 +27,58 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="10dp"
-            android:text="Rollrkid"
+            android:text="木木助手"
             android:textColor="#4E5156"
             android:textSize="18sp" />
 
     </RelativeLayout>
 
-    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-        android:id="@+id/userinfo_swipe_refresh_layout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:srl_direction="both">
+        android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/listview_user_detail_info"
+        <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+            android:id="@+id/userinfo_swipe_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/divider_color"
-            android:dividerHeight="8dp" />
-    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+            android:layout_weight="1"
+            app:srl_direction="both">
+
+            <ListView
+                android:id="@+id/listview_user_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/divider_color"
+                android:dividerHeight="8dp" />
+        </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
+        <RelativeLayout
+            android:id="@+id/rela_comment_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/edittext_comment_addcomment_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/btn_comment_send"
+                android:background="@drawable/edittext_shape"
+                android:padding="5dp"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btn_comment_send_details"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="8dp"
+                android:background="@mipmap/cc_blue2x" />
+        </RelativeLayout>
+    </RelativeLayout>
+
 
 </LinearLayout>

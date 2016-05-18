@@ -62,7 +62,7 @@ public class MainHomeFragment extends Fragment implements SwipyRefreshLayout.OnR
         swipyListviewDiscover.setOnRefreshListener(this);
 
         list = new ArrayList<>();
-        adapter = new MainDiscoverAdapter(getActivity(), list, R.layout.item_listview_discover,0);
+        adapter = new MainDiscoverAdapter(getActivity(), list, R.layout.item_listview_discover,0,NotifyCommentResult.TYPE_MAIN);
         listviewMainDiscover.setAdapter(adapter);
 
         getData(mCursor);
@@ -178,23 +178,25 @@ public class MainHomeFragment extends Fragment implements SwipyRefreshLayout.OnR
 
     @Subscribe
     public void notifyComment(NotifyCommentResult event) {
-        String hint;
-        if (relaComment.getVisibility() == View.GONE) {
-            relaComment.setVisibility(View.VISIBLE);
-        }else {
-            relaComment.setVisibility(View.GONE);
-        }
-        if(currCommentPosition != event.getPosition()){
-            relaComment.setVisibility(View.VISIBLE);
-            currCommentPosition = event.getPosition();
-            mFlowModel = event.getFlowModel();
-            edittextCommentAddcomment.setText("");
-            if (TextUtils.isEmpty(event.getFlowModel().getAuthor().getNickName())) {
-                hint = event.getFlowModel().getAuthor().getUsername();
+        if(event.getType()==NotifyCommentResult.TYPE_MAIN) {
+            String hint;
+            if (relaComment.getVisibility() == View.GONE) {
+                relaComment.setVisibility(View.VISIBLE);
             } else {
-                hint = event.getFlowModel().getAuthor().getNickName();
+                relaComment.setVisibility(View.GONE);
             }
-            edittextCommentAddcomment.setHint("评论:" + hint);
+            if (currCommentPosition != event.getPosition()) {
+                relaComment.setVisibility(View.VISIBLE);
+                currCommentPosition = event.getPosition();
+                mFlowModel = event.getFlowModel();
+                edittextCommentAddcomment.setText("");
+                if (TextUtils.isEmpty(event.getFlowModel().getAuthor().getNickName())) {
+                    hint = event.getFlowModel().getAuthor().getUsername();
+                } else {
+                    hint = event.getFlowModel().getAuthor().getNickName();
+                }
+                edittextCommentAddcomment.setHint("评论:" + hint);
+            }
         }
     }
 }

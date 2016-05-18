@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_vote_unfinished_icon"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:padding="10dp"
+        android:src="@mipmap/ic_import_course_other_tip" />
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/iv_vote_unfinished_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/tv_vote_unfinished_time"
+                android:paddingTop="10dp"
+                android:id="@+id/tv_vote_unfinished_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="投票标题"
+                android:singleLine="true"
+                android:textColor="@color/titlecolor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:layout_centerVertical="true"
+                android:paddingTop="10dp"
+                android:id="@+id/tv_vote_unfinished_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2016/04/07 04:20"
+                android:textColor="@color/textcolor"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:paddingTop="5dp"
+            android:id="@+id/tv_vote_unfinished_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建人:13227293721"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:paddingTop="5dp"
+            android:id="@+id/tv_vote_unfinished_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="投票内容"
+            android:paddingRight="10dp"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_vote_unfinished_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="反馈内容"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

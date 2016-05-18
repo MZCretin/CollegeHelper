@@ -52,10 +52,12 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
     public static final int TYPE_USER_DETAILS = 1;
     private FlowModel mFlowModel;
     private int type;
+    private int pagetype;
 
-    public MainDiscoverAdapter(Context context, List<FlowModel> mDatas, int itemLayoutId, int type) {
+    public MainDiscoverAdapter(Context context, List<FlowModel> mDatas, int itemLayoutId, int type,int pagetype) {
         super(context, mDatas, itemLayoutId);
         this.type = type;
+        this.pagetype = pagetype;
     }
 
     @Override
@@ -238,6 +240,7 @@ public class MainDiscoverAdapter extends CommonAdapter<FlowModel> implements Sel
     //评论操作
     private void doComment(FlowModel flowModel, int position) {
         NotifyCommentResult result = new NotifyCommentResult();
+        result.setType(pagetype);
         result.setFlowModel(flowModel);
         result.setPosition(position);
         EventBus.getDefault().post(result);

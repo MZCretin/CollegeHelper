@@ -1,17 +1,25 @@
 package com.cretin.collegehelper.ui;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cretin.collegehelper.BaseApp;
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.adapter.MainDiscoverAdapter;
+import com.cretin.collegehelper.eventbus.NotifyCommentResult;
+import com.cretin.collegehelper.model.CommentModel;
 import com.cretin.collegehelper.model.FlowModel;
 import com.cretin.collegehelper.model.UserModel;
 import com.cretin.collegehelper.utils.BigBitmapUtils;
@@ -24,15 +32,19 @@ import com.squareup.picasso.Picasso;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 @EActivity(R.layout.activity_user_details)
-public class UserDetailsActivity extends AppCompatActivity implements SwipyRefreshLayout.OnRefreshListener{
+public class UserDetailsActivity extends AppCompatActivity implements SwipyRefreshLayout.OnRefreshListener {
     @ViewById
     ImageView ivUserDetailsInfoBack;
     @ViewById
@@ -41,6 +53,14 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
     ListView listviewUserDetailInfo;
     @ViewById
     SwipyRefreshLayout userinfoSwipeRefreshLayout;
+    @ViewById
+    EditText edittextCommentAddcommentDetails;
+    @ViewById
+    Button btnCommentSendDetails;
+    @ViewById
+    RelativeLayout relaCommentDetails;
+    private FlowModel mFlowModel;
+    private int currCommentPosition = -1;
     private ImageView icon;
     private TextView userId;
     private TextView userDes;
@@ -53,20 +73,20 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
 
 
     @AfterViews
-    public void init(){
+    public void init() {
         getSupportActionBar().hide();
 
         mUserModel = (UserModel) getIntent().getSerializableExtra("usermodel");
 
         list = new ArrayList<>();
-        adapter = new MainDiscoverAdapter(this,list,R.layout.item_listview_discover,MainDiscoverAdapter.TYPE_USER_DETAILS);
+        adapter = new MainDiscoverAdapter(this, list, R.layout.item_listview_discover, MainDiscoverAdapter.TYPE_USER_DETAILS, NotifyCommentResult.TYPE_INFO_ACTIVITY);
         listviewUserDetailInfo.setAdapter(adapter);
 
         addHeadViews();
 
         if (mUserModel != null) {
             addHeadViewData(mUserModel);
-            getData(0,mUserModel);
+            getData(0, mUserModel);
         }
 
         userinfoSwipeRefreshLayout.setOnRefreshListener(this);
@@ -77,22 +97,58 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
                 UserDetailsActivity.this.finish();
             }
         });
+
+        btnCommentSendDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendComment();
+            }
+        });
+
+        listviewUserDetailInfo.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (currCommentPosition > firstVisibleItem + visibleItemCount ||
+                        currCommentPosition < firstVisibleItem) {
+                    if (relaCommentDetails.getVisibility() == View.VISIBLE) {
+                        relaCommentDetails.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
     }
 
-    private void addHeadViewData(final UserModel userModel){
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    private void addHeadViewData(final UserModel userModel) {
         BmobQuery<UserModel> query = new BmobQuery<>();
         query.addWhereEqualTo("username", userModel.getUsername());
         query.findObjects(this, new FindListener<UserModel>() {
             @Override
             public void onSuccess(List<UserModel> object) {
                 userinfoSwipeRefreshLayout.setRefreshing(false);
-                if(object!=null&&!object.isEmpty()) {
+                if (object != null && !object.isEmpty()) {
                     UserModel userModel = object.get(0);
                     BaseApp.getInstance().setUserModel(userModel);
-                    userId.setText("用户ID:"+userModel.getId());
+                    userId.setText("用户ID:" + userModel.getId());
                     userDes.setText(userModel.getSignature());
                     String nickName = userModel.getNickName();
-                    if(TextUtils.isEmpty(nickName)){
+                    if (TextUtils.isEmpty(nickName)) {
                         nickName = userModel.getUsername();
                     }
                     tvUserDetailInfoName.setText(nickName);
@@ -104,9 +160,11 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
                         timeStr = (int) (temp / 1000 / 60 / 60 / 24 / 30) + "月";
                     }
                     age.setText(timeStr);
-                    flow.setText(userModel.getMembers().size()+"个");
+                    if (userModel.getMembers() != null)
+                        flow.setText(userModel.getMembers().size() + "个");
                 }
             }
+
             @Override
             public void onError(int code, String msg) {
                 userinfoSwipeRefreshLayout.setRefreshing(false);
@@ -114,9 +172,9 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
             }
         });
 
-        if(TextUtils.isEmpty(userModel.getAvater())){
+        if (TextUtils.isEmpty(userModel.getAvater())) {
             Picasso.with(this).load(R.mipmap.default_icon).transform(new CircleTransform()).into(icon);
-        }else{
+        } else {
             Picasso.with(this).load(userModel.getAvater()).transform(new CircleTransform()).into(icon);
         }
 
@@ -124,10 +182,10 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
             @Override
             public void onClick(View v) {
                 List<String> listUrl = new ArrayList<>();
-                if(!TextUtils.isEmpty(userModel.getAvater())){
+                if (!TextUtils.isEmpty(userModel.getAvater())) {
                     listUrl.add(userModel.getAvater());
                     BigBitmapUtils.seeBigBitmap(0, listUrl, UserDetailsActivity.this, false);
-                }else {
+                } else {
                     listUrl.add(userModel.getAvater());
                     BigBitmapUtils.seeBigBitmap(0, listUrl, UserDetailsActivity.this, true);
                 }
@@ -146,12 +204,12 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
         listviewUserDetailInfo.addHeaderView(view);
     }
 
-    private void getData(final int cursor,UserModel userModel) {
+    private void getData(final int cursor, UserModel userModel) {
         BmobQuery<FlowModel> query = new BmobQuery<>();
         query.include("author");
         query.setLimit(10);
         query.setSkip(cursor);
-        query.addWhereEqualTo("author",userModel);
+        query.addWhereEqualTo("author", userModel);
         query.order("-createdAt");
         query.findObjects(this, new FindListener<FlowModel>() {
             @Override
@@ -161,7 +219,7 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
                 }
                 mCursor += object.size();
                 list.addAll(object);
-                if(object.isEmpty()){
+                if (object.isEmpty()) {
                     Toast.makeText(UserDetailsActivity.this, "没有更多数据", Toast.LENGTH_SHORT).show();
                 }
                 adapter.notifyDataSetChanged();
@@ -178,11 +236,68 @@ public class UserDetailsActivity extends AppCompatActivity implements SwipyRefre
 
     @Override
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
-        if(SwipyRefreshLayoutDirection.TOP==direction){
-            getData(0,mUserModel);
+        if (SwipyRefreshLayoutDirection.TOP == direction) {
+            getData(0, mUserModel);
             addHeadViewData(mUserModel);
-        }else if(SwipyRefreshLayoutDirection.BOTTOM==direction){
-            getData(mCursor,mUserModel);
+        } else if (SwipyRefreshLayoutDirection.BOTTOM == direction) {
+            getData(mCursor, mUserModel);
+        }
+    }
+
+    //发送评论
+    private void sendComment() {
+        String content = edittextCommentAddcommentDetails.getText().toString();
+        if (TextUtils.isEmpty(content)) {
+            Toast.makeText(this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        UserModel user = BmobUser.getCurrentUser(this, UserModel.class);
+        CommentModel commentModel = new CommentModel();
+        commentModel.setComment(content);
+        commentModel.setFromUser(user);
+        commentModel.setCreated(System.currentTimeMillis());
+        List<CommentModel> list = mFlowModel.getCommentModelList();
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        list.add(commentModel);
+        mFlowModel.setCommentModelList(list);
+        mFlowModel.update(this, new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(UserDetailsActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toast.makeText(UserDetailsActivity.this, s, Toast.LENGTH_SHORT).show();
+            }
+        });
+        edittextCommentAddcommentDetails.setText("");
+        relaCommentDetails.setVisibility(View.GONE);
+    }
+
+    @Subscribe
+    public void notifyComment(NotifyCommentResult event) {
+        if (event.getType() == NotifyCommentResult.TYPE_INFO_ACTIVITY) {
+            String hint;
+            if (relaCommentDetails.getVisibility() == View.GONE) {
+                relaCommentDetails.setVisibility(View.VISIBLE);
+            } else {
+                relaCommentDetails.setVisibility(View.GONE);
+            }
+            if (currCommentPosition != event.getPosition()) {
+                relaCommentDetails.setVisibility(View.VISIBLE);
+                currCommentPosition = event.getPosition();
+                mFlowModel = event.getFlowModel();
+                edittextCommentAddcommentDetails.setText("");
+                if (TextUtils.isEmpty(event.getFlowModel().getAuthor().getNickName())) {
+                    hint = event.getFlowModel().getAuthor().getUsername();
+                } else {
+                    hint = event.getFlowModel().getAuthor().getNickName();
+                }
+                edittextCommentAddcommentDetails.setHint("评论:" + hint);
+            }
         }
     }
 

@@ -13,6 +13,7 @@ import com.cretin.collegehelper.ui.PaperMyCreatedActivity_;
 import com.cretin.collegehelper.ui.PaperMyFinishedActivity_;
 import com.cretin.collegehelper.ui.PaperMyJoinedActivity_;
 import com.cretin.collegehelper.ui.ShowWebViewActivity_;
+import com.cretin.collegehelper.ui.TeacherOnLineActivity_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -31,6 +32,10 @@ public class MainCourseFragment extends Fragment {
     RelativeLayout relaHeadMain;
     @ViewById
     Kanner kannerCourse;
+    @ViewById
+    ImageView ivOnline;
+    @ViewById
+    RelativeLayout relaOnlineContainer;
     @ViewById
     ImageView ivNewPaper;
     @ViewById
@@ -100,6 +105,13 @@ public class MainCourseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), PaperMyCreatedActivity_.class));
+            }
+        });
+
+        relaOnlineContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), TeacherOnLineActivity_.class));
             }
         });
     }

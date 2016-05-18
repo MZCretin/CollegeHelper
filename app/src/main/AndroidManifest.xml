@@ -42,6 +42,7 @@
     <!-- 高德地图 -->
     <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- 用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
@@ -145,7 +146,9 @@
         <activity android:name=".ui.PaperManagerActivity_" />
         <activity android:name=".ui.UpdateUserInfoActivity_" />
         <activity android:name=".ui.ShowWebViewActivity_" />
-        <activity android:name=".ui.AboutActivity"></activity>
+        <activity android:name=".ui.AboutActivity" />
+        <activity android:name=".ui.VoteMyJoinInUnFinishActivity_" />
+        <activity android:name=".ui.TeacherOnLineActivity_"></activity>
     </application>
 
 </manifest>

@@ -43,6 +43,33 @@
                 android:background="@color/divider_color" />
 
             <RelativeLayout
+                android:id="@+id/rela_online_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_online"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_chat_blacklist_empty_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_online"
+                    android:text="教师在线问答"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/divider_color" />
+
+            <RelativeLayout
                 android:id="@+id/rela_new_paper_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

@@ -52,4 +52,5 @@ dependencies {
     compile files('libs/AMap_Location_V2.4.1_20160414.jar')
     compile project(':kanner')
     compile files('libs/Bmob_Push_V0.8beta_20160420.jar')
+    compile files('libs/AppOffer_2.4.6.jar')
 }

@@ -6,19 +6,27 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cretin.collegehelper.BaseApp;
 import com.cretin.collegehelper.R;
 import com.cretin.collegehelper.adapter.MainDiscoverAdapter;
+import com.cretin.collegehelper.eventbus.NotifyCommentResult;
+import com.cretin.collegehelper.model.CommentModel;
 import com.cretin.collegehelper.model.FlowModel;
 import com.cretin.collegehelper.model.UserModel;
 import com.cretin.collegehelper.popwindow.SelectPopupWindow;
@@ -35,6 +43,8 @@ import com.squareup.picasso.Picasso;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +53,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 @EFragment(R.layout.fragment_main_mine)
 public class MainMineFragment extends Fragment implements SwipyRefreshLayout.OnRefreshListener, SelectPopupWindow.OnPopWindowClickListener {
@@ -54,6 +65,14 @@ public class MainMineFragment extends Fragment implements SwipyRefreshLayout.OnR
     ListView listviewMine;
     @ViewById
     SwipyRefreshLayout meSwipeRefreshLayout;
+    @ViewById
+    EditText edittextCommentAddcommentMine;
+    @ViewById
+    Button btnCommentSendMine;
+    @ViewById
+    RelativeLayout relaCommentMine;
+    private FlowModel mFlowModel;
+    private int currCommentPosition = -1;
     private ImageView icon;
     private TextView userId;
     private TextView userDes;
@@ -72,7 +91,7 @@ public class MainMineFragment extends Fragment implements SwipyRefreshLayout.OnR
     @AfterViews
     public void init() {
         list = new ArrayList<>();
-        adapter = new MainDiscoverAdapter(getActivity(), list, R.layout.item_listview_discover, MainDiscoverAdapter.TYPE_USER_DETAILS);
+        adapter = new MainDiscoverAdapter(getActivity(), list, R.layout.item_listview_discover, MainDiscoverAdapter.TYPE_USER_DETAILS,NotifyCommentResult.TYPE_INFO_FRAGMENT);
         listviewMine.setAdapter(adapter);
         addHeadViews();
         meSwipeRefreshLayout.setOnRefreshListener(this);
@@ -83,6 +102,30 @@ public class MainMineFragment extends Fragment implements SwipyRefreshLayout.OnR
             @Override
             public void onClick(View v) {
                 showPopWindow(getActivity());
+            }
+        });
+
+        btnCommentSendMine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendComment();
+            }
+        });
+
+        listviewMine.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(currCommentPosition>firstVisibleItem+visibleItemCount||
+                        currCommentPosition<firstVisibleItem){
+                    if(relaCommentMine.getVisibility()==View.VISIBLE){
+                        relaCommentMine.setVisibility(View.GONE);
+                    }
+                }
             }
         });
     }
@@ -243,8 +286,77 @@ public class MainMineFragment extends Fragment implements SwipyRefreshLayout.OnR
                 builder.create().show();
                 break;
             case R.id.btn_setting_about:
-                startActivity(new Intent(getActivity(),AboutActivity.class));
+                startActivity(new Intent(getActivity(), AboutActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void notifyComment(NotifyCommentResult event) {
+        if (event.getType() == NotifyCommentResult.TYPE_INFO_FRAGMENT) {
+            String hint;
+            if (relaCommentMine.getVisibility() == View.GONE) {
+                relaCommentMine.setVisibility(View.VISIBLE);
+            } else {
+                relaCommentMine.setVisibility(View.GONE);
+            }
+            if (currCommentPosition != event.getPosition()) {
+                relaCommentMine.setVisibility(View.VISIBLE);
+                currCommentPosition = event.getPosition();
+                mFlowModel = event.getFlowModel();
+                edittextCommentAddcommentMine.setText("");
+                if (TextUtils.isEmpty(event.getFlowModel().getAuthor().getNickName())) {
+                    hint = event.getFlowModel().getAuthor().getUsername();
+                } else {
+                    hint = event.getFlowModel().getAuthor().getNickName();
+                }
+                edittextCommentAddcommentMine.setHint("评论:" + hint);
+            }
+        }
+    }
+
+    //发送评论
+    private void sendComment() {
+        String content  = edittextCommentAddcommentMine.getText().toString();
+        if(TextUtils.isEmpty(content)){
+            Toast.makeText(getActivity(), "评论内容不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        UserModel user = BmobUser.getCurrentUser(getActivity(), UserModel.class);
+        CommentModel commentModel = new CommentModel();
+        commentModel.setComment(content);
+        commentModel.setFromUser(user);
+        commentModel.setCreated(System.currentTimeMillis());
+        List<CommentModel> list = mFlowModel.getCommentModelList();
+        if(list == null){
+            list = new ArrayList<>();
+        }
+        list.add(commentModel);
+        mFlowModel.setCommentModelList(list);
+        mFlowModel.update(getActivity(), new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(getActivity(), "评论成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+            }
+        });
+        edittextCommentAddcommentMine.setText("");
+        relaCommentMine.setVisibility(View.GONE);
     }
 }

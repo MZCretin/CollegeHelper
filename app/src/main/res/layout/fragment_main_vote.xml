@@ -23,6 +23,12 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_vote_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
     <RelativeLayout
         android:id="@+id/rela_create_vote_container"
         android:layout_width="match_parent"
@@ -62,6 +68,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/divider_color" />
+
     <RelativeLayout
         android:id="@+id/rela_vote_manager_container"
         android:layout_width="match_parent"
@@ -95,19 +102,21 @@
             android:text="如果你发起过投票,你可以在此管理它们" />
     </RelativeLayout>
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/divider_color" />
+
     <RelativeLayout
-        android:id="@+id/rela_vote_tongji_container"
+        android:id="@+id/rela_vote_my_joinin_unfinish_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_vote_icon_tongji"
+            android:id="@+id/iv_vote_icon_my_joinin_unfinish"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="10dp"
@@ -117,21 +126,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iv_vote_icon_tongji"
+            android:layout_toRightOf="@+id/iv_vote_icon_my_joinin_unfinish"
             android:paddingTop="10dp"
-            android:text="投票统计"
+            android:text="我未完成的投票"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv_vote_icon_tongji"
+            android:layout_alignBottom="@+id/iv_vote_icon_my_joinin_unfinish"
             android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/iv_vote_icon_tongji"
+            android:layout_toRightOf="@+id/iv_vote_icon_my_joinin_unfinish"
             android:paddingBottom="10dp"
             android:singleLine="true"
-            android:text="如果你发起过投票,你可以在此统计它们" />
+            android:text="你可以在此查看与你相关但未完成的投票" />
     </RelativeLayout>
 
     <TextView
@@ -140,6 +149,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/divider_color" />
+
     <RelativeLayout
         android:id="@+id/rela_vote_my_joinin_container"
         android:layout_width="match_parent"
@@ -158,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/iv_vote_icon_my_joinin"
             android:paddingTop="10dp"
-            android:text="我参与的投票"
+            android:text="我参与过的投票"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -170,7 +180,7 @@
             android:layout_toRightOf="@+id/iv_vote_icon_my_joinin"
             android:paddingBottom="10dp"
             android:singleLine="true"
-            android:text="如果你只是参与者,你可以在此查看与你相关的投票" />
+            android:text="你可以在此查看与你相关的完成的投票" />
     </RelativeLayout>
 
 </LinearLayout>

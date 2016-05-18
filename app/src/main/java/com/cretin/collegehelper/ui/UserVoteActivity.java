@@ -18,12 +18,13 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 
 @EActivity(R.layout.activity_user_vote)
 public class UserVoteActivity extends AppCompatActivity {
-
     @ViewById
     ImageView ivVotingBack;
     @ViewById
@@ -86,12 +87,32 @@ public class UserVoteActivity extends AppCompatActivity {
         voteResult.save(this, new SaveListener() {
             @Override
             public void onSuccess() {
+                removeInfo();
+                UserVoteActivity.this.finish();
                 Toast.makeText(UserVoteActivity.this, "投票成功！", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int i, String s) {
                 Toast.makeText(UserVoteActivity.this, s, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void removeInfo() {
+        BmobRelation relation = voteModel.getJoinList();
+        relation.remove(BmobUser.getCurrentUser(UserVoteActivity.this, UserModel.class));
+        voteModel.setJoinList(relation);
+        voteModel.update(this, new UpdateListener() {
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure(int arg0, String arg1) {
+                Toast.makeText(UserVoteActivity.this, arg1, Toast.LENGTH_SHORT).show();
             }
         });
     }
