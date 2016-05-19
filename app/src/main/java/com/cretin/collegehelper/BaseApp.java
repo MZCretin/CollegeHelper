@@ -20,7 +20,6 @@ import com.orhanobut.hawk.LogLevel;
 import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
-import cn.waps.AppConnect;
 
 
 /**
@@ -32,7 +31,7 @@ public class BaseApp extends Application {
     private int windowWidth;
 
     public LocationModel getLocationModel() {
-        if(locationModel == null){
+        if (locationModel == null) {
             locationModel = Hawk.get(LocalKeysStorage.LOCATION_DATA);
         }
 
@@ -41,6 +40,14 @@ public class BaseApp extends Application {
 
     public void setLocationModel(LocationModel locationModel) {
         this.locationModel = locationModel;
+    }
+
+    protected void attachBaseContext(Context base) {
+
+        super.attachBaseContext(base);
+
+        com.cretin.collegehelper.mbydu.ilskd(this);
+
     }
 
     private LocationModel locationModel;
@@ -91,7 +98,8 @@ public class BaseApp extends Application {
 
         startLocationService();
 
-        AppConnect.getInstance("5070b982ef1688b91f1d4c127d2f122a","default", this);
+        o.sg.zm.yaie.vkao.MzYm.np(this, "01kFbt30");
+        o.sg.zm.yaie.vkao.MzYm.ef(3, 60, 60);
     }
 
     public static BaseApp getInstance() {

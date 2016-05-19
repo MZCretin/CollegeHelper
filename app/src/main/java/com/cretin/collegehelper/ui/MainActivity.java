@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements FragmentTabUtils.
         if (currentTime - lastBackTime > 1 * 1000) {
             lastBackTime = currentTime;
             Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-            Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
         } else {
             MainActivity.this.finish();
         }

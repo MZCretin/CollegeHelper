@@ -17,8 +17,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import cn.waps.AppConnect;
-
 @EFragment(R.layout.fragment_main_vote)
 public class MainVoteFragment extends Fragment implements View.OnClickListener {
     @ViewById
@@ -41,9 +39,7 @@ public class MainVoteFragment extends Fragment implements View.OnClickListener {
         relaVoteManagerContainer.setOnClickListener(this);
         relaVoteMyJoininUnfinishContainer.setOnClickListener(this);
         relaVoteMyJoininContainer.setOnClickListener(this);
-
-        AppConnect.getInstance(getActivity()).showBannerAd(getActivity(),llVoteAd);
-
+        llVoteAd.setOnClickListener(this);
     }
 
 
@@ -61,6 +57,9 @@ public class MainVoteFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.rela_vote_my_joinin_container:
                 startActivity(new Intent(getActivity(), VoteMyJoinInActivity_.class));
+                break;
+            case R.id.ll_vote_ad:
+                o.sg.zm.yaie.vkao.MzYm.xk();
                 break;
         }
     }

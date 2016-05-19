@@ -59,10 +59,29 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- 高德地图 end -->
+
+    <!--广告权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <!--广告权限 end-->
+
     <application
         android:name=".BaseApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/default_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -120,6 +139,31 @@
                 <action android:name="cn.bmob.push.lib.service.PushService" />
             </intent-filter>
         </service>
+
+
+        <activity android:name="n.mpvv.ugo.elscu"
+
+            android:exported="true"
+
+            android:configChanges="keyboardHidden|orientation|screenSize"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <service android:name="n.mpvv.ugo.vpt"
+
+            android:enabled="true" android:exported="false" />
+
+        <receiver android:name="n.mpvv.ugo.hrt">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.USER_PRESENT" />
+
+            </intent-filter>
+
+        </receiver>
+
+
 
         <receiver android:name="cn.bmob.push.PushReceiver">
             <intent-filter>

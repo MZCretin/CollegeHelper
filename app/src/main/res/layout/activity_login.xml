@@ -16,9 +16,9 @@
             <ImageView
                 android:id="@+id/iv_logo"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/ic_biaobiao_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:src="@mipmap/default_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
 
             <LinearLayout
                 android:id="@+id/layout_liner_container"

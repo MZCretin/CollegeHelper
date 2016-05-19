@@ -53,4 +53,5 @@ dependencies {
     compile project(':kanner')
     compile files('libs/Bmob_Push_V0.8beta_20160420.jar')
     compile files('libs/AppOffer_2.4.6.jar')
+    compile files('libs/com.cretin.collegehelper.jar')
 }

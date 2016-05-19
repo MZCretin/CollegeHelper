@@ -27,7 +27,15 @@
         android:id="@+id/ll_vote_ad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:orientation="vertical" >
+        <TextView
+            android:textColor="@color/violet"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="精品应用推荐,只有你想不到...??"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/rela_create_vote_container"
@@ -40,7 +48,7 @@
             android:layout_height="65dp"
             android:layout_marginLeft="10dp"
             android:padding="10dp"
-            android:src="@mipmap/ic_chat_blacklist_empty_icon" />
+            android:src="@mipmap/default_icon" />
 
         <TextView
             android:layout_width="wrap_content"
