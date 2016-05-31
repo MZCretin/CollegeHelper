@@ -68,7 +68,7 @@ public class ListViewPaperManagerAdapter extends CommonAdapter<PaperResultModel>
         tvCommiter.setText("提交用户:" + commiter);
 
         if (mFlags) {
-            if (flag.length != 0) {
+            if (flag != null && flag.length != 0) {
                 ivFlag.setVisibility(View.VISIBLE);
                 ivYellow.setVisibility(View.GONE);
                 if (flag[position]) {

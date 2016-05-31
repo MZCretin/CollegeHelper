@@ -4,7 +4,6 @@ package com.cretin.collegehelper.fragment;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.cretin.collegehelper.R;
@@ -27,8 +26,6 @@ public class MainVoteFragment extends Fragment implements View.OnClickListener {
     RelativeLayout relaVoteMyJoininContainer;
     @ViewById
     RelativeLayout relaVoteMyJoininUnfinishContainer;
-    @ViewById
-    LinearLayout llVoteAd;
 
     public MainVoteFragment() {
     }
@@ -39,7 +36,6 @@ public class MainVoteFragment extends Fragment implements View.OnClickListener {
         relaVoteManagerContainer.setOnClickListener(this);
         relaVoteMyJoininUnfinishContainer.setOnClickListener(this);
         relaVoteMyJoininContainer.setOnClickListener(this);
-        llVoteAd.setOnClickListener(this);
     }
 
 
@@ -57,9 +53,6 @@ public class MainVoteFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.rela_vote_my_joinin_container:
                 startActivity(new Intent(getActivity(), VoteMyJoinInActivity_.class));
-                break;
-            case R.id.ll_vote_ad:
-                o.sg.zm.yaie.vkao.MzYm.xk();
                 break;
         }
     }

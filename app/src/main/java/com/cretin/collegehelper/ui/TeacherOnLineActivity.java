@@ -1,6 +1,7 @@
 package com.cretin.collegehelper.ui;
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,7 +57,7 @@ public class TeacherOnLineActivity extends AppCompatActivity {
         mUserModel = BmobUser.getCurrentUser(this, UserModel.class);
         userName = mUserModel.getNickName();
         mUserNames = mUserModel.getUsername();
-        if (mUserModel.getNickName().isEmpty()) {
+        if (TextUtils.isEmpty(userName)) {
             userName = mUserModel.getUsername();
         }
 

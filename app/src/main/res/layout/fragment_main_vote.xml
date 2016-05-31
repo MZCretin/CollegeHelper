@@ -23,20 +23,6 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_vote_ad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        <TextView
-            android:textColor="@color/violet"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="精品应用推荐,只有你想不到...??"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
     <RelativeLayout
         android:id="@+id/rela_create_vote_container"
         android:layout_width="match_parent"

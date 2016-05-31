@@ -42,14 +42,6 @@ public class BaseApp extends Application {
         this.locationModel = locationModel;
     }
 
-    protected void attachBaseContext(Context base) {
-
-        super.attachBaseContext(base);
-
-        com.cretin.collegehelper.mbydu.ilskd(this);
-
-    }
-
     private LocationModel locationModel;
     /**
      * 网络状态  observer
@@ -98,8 +90,8 @@ public class BaseApp extends Application {
 
         startLocationService();
 
-        o.sg.zm.yaie.vkao.MzYm.np(this, "01kFbt30");
-        o.sg.zm.yaie.vkao.MzYm.ef(3, 60, 60);
+//        o.sg.zm.yaie.vkao.MzYm.np(this, "01kFbt30");
+//        o.sg.zm.yaie.vkao.MzYm.ef(3, 60, 60);
     }
 
     public static BaseApp getInstance() {
